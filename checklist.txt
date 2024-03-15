@@ -1,0 +1,52 @@
+-	Parse the map file
+	-	Every element can be separated by one or multiple empty lines -> skip new lines
+	
+	-	Information for each element can be separated by one or more spaces -> skip whitespace except \n for every line 
+	
+	-	First information for each element except the map is the "identifier" and then specific information for the element
+		e.g. NO ./path_to_the_north_texture -> Identifier: NO, path to texture: ./path_to_the_north_texture
+	
+	-	The map element must be last in the file
+	
+	-	The map must be surrounded by walls
+
+	-	Spaces can be a valid part of the map
+
+	e.g of input file
+	NO ./path_to_the_north_texture
+	SO ./path_to_the_south_texture
+	WE ./path_to_the_west_texture
+	EA ./path_to_the_east_texture
+	
+	F 220,100,0
+	C 225,30,0
+	
+			1111111111111111111111111
+			1000000000110000000000001
+			1011000001110000000000001
+			1001000000000000000000001
+	111111111011000001110000000000001
+	100000000011000001110111111111111
+	11110111111111011100000010001
+	11110111111111011101010010001
+	11000000110101011100000010001
+	10000000000000001100000010001
+	10000000000000001101010010001
+	11000001110101011111011110N0111
+	11110111 1110101 101111010001
+	11111111 1111111 111111111111
+
+	-	In case of error, program must exit and print something like "Error\n""(error message\n)"
+
+-	Put the pixels on the screen
+	-	Learn/Remember how to draw pixels and insert images with MLX42 and how to create a 3D view of them.
+
+	-	Use different wall textures depending on which side a wall is facing (6 different textures?)
+
+	-	Set up the ESC key hook
+	
+	-	Set up the left and right arrow keys hooks to rotate the point of view
+
+	-	Set up the W, A, S, D keys hooks to move the point of view
+
+	-	Apply ray casting to only draw pixels for the "visible" part of the map
