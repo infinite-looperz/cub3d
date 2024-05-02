@@ -6,7 +6,7 @@
 #    By: akasiota <akasiota@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/03/15 17:23:44 by akasiota      #+#    #+#                  #
-#    Updated: 2024/04/24 15:36:31 by akasiota      ########   odam.nl          #
+#    Updated: 2024/05/02 19:13:00 by akasiota      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,10 @@ endif
 
 SRC_DIR = ./src
 OBJ_DIR = ./obj
-SRC = $(wildcard $(SRC_DIR)/*.c)
+# SRC = $(wildcard $(SRC_DIR)/*.c)
+SRC :=	$(SRC_DIR)/main.c \
+		$(SRC_DIR)/map_init.c \
+		$(SRC_DIR)/parser.c
 OBJ = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
 
 RM = rm -f
