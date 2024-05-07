@@ -6,7 +6,7 @@
 #    By: akasiota <akasiota@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/03/15 17:23:44 by akasiota      #+#    #+#                  #
-#    Updated: 2024/05/07 16:42:10 by akasiota      ########   odam.nl          #
+#    Updated: 2024/05/07 18:38:51 by akasiota      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,9 @@ SRC :=	$(SRC_DIR)/main.c \
 		$(SRC_DIR)/map_init.c \
 		$(SRC_DIR)/parser.c \
 		$(SRC_DIR)/free_memory.c \
-		$(SRC_DIR)/errors.c
+		$(SRC_DIR)/errors.c \
+		$(SRC_DIR)/ft_split_cub3d.c \
+		$(SRC_DIR)/utilities.c
 OBJ := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
 
 RM := rm -f

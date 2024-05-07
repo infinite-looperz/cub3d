@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/02 16:59:34 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/07 17:13:30 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/07 18:44:59 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	store_textures_and_colors(t_data *data)
 	tmp_2 = NULL;
 	while (data->map_info != NULL && data->map_info[i] != NULL)
 	{
-		tmp = ft_split(data->map_info[i], ' ');
+		tmp = ft_split_cub3d(data, data->map_info[i]);
+		// tmp = ft_split(data->map_info[i], ' ');
 		if (ft_strlen(tmp[0]) == 2)
 		{
 			if (ft_strncmp(tmp[0], "NO", 3) == 0)
@@ -95,15 +96,30 @@ void	print_stored_info(t_data *data)
 	int i;
 	
 	i = 0;
+	printf("-----------Map info-----------\n");
 	while (data->map_info[i] != NULL)
 	{
 		ft_printf("%s", data->map_info[i]);
 		i++;
 	}
 	i = 0;
+	printf("-----------Texture files-----------\n");
 	while (data->map_looks.textures[i] != NULL && i < 4)
 	{
 		printf("%s\n", data->map_looks.textures[i]);
+		i++;
+	}
+	i = 0;
+	printf("-----------Colors-----------\n");
+	while (i < 3)
+	{
+		printf("floor: %d\n", data->map_looks.floor_color[i]);
+		i++;
+	}
+	i = 0;
+	while (i < 3)
+	{
+		printf("ceiling: %d\n", data->map_looks.ceiling_color[i]);
 		i++;
 	}
 }
