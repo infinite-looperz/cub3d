@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/02 16:59:34 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/07 18:44:59 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/07 20:04:19 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	store_textures_and_colors(t_data *data)
 	while (data->map_info != NULL && data->map_info[i] != NULL)
 	{
 		tmp = ft_split_cub3d(data, data->map_info[i]);
-		// tmp = ft_split(data->map_info[i], ' ');
+		if (tmp == NULL)
+			error_and_exit(data, "Malloc error", 42);
 		if (ft_strlen(tmp[0]) == 2)
 		{
 			if (ft_strncmp(tmp[0], "NO", 3) == 0)
@@ -66,18 +67,22 @@ void	store_textures_and_colors(t_data *data)
 			tmp_2 = ft_split(tmp[1], ',');
 			if (ft_strncmp(tmp[0], "F", 2) == 0)
 			{
-				data->map_looks.floor_color[RED] = ft_atoi(tmp_2[RED]);
-				data->map_looks.floor_color[GREEN] = ft_atoi(tmp_2[GREEN]);
-				data->map_looks.floor_color[BLUE] = ft_atoi(tmp_2[BLUE]);		
+				data->map_looks.floor_color[RED] = ft_atoi_cub3d(data, tmp_2[RED], tmp, tmp_2);
+				data->map_looks.floor_color[GREEN] = ft_atoi_cub3d(data, tmp_2[GREEN], tmp, tmp_2);
+				data->map_looks.floor_color[BLUE] = ft_atoi_cub3d(data, tmp_2[BLUE], tmp, tmp_2);		
 			}
 			else if (ft_strncmp(tmp[0], "C", 2) == 0)
 			{
-				data->map_looks.ceiling_color[RED] = ft_atoi(tmp_2[RED]);
-				data->map_looks.ceiling_color[GREEN] = ft_atoi(tmp_2[GREEN]);
-				data->map_looks.ceiling_color[BLUE] = ft_atoi(tmp_2[BLUE]);		
+				data->map_looks.ceiling_color[RED] = ft_atoi_cub3d(data, tmp_2[RED], tmp, tmp_2);
+				data->map_looks.ceiling_color[GREEN] = ft_atoi_cub3d(data, tmp_2[GREEN], tmp, tmp_2);
+				data->map_looks.ceiling_color[BLUE] = ft_atoi_cub3d(data, tmp_2[BLUE], tmp, tmp_2);		
 			}
 			else
+			{
+				free_2D_array((void**)tmp_2);
+				free_2D_array((void**)tmp);
 				error_and_exit(data, "Wrong element identifier for floor and/or ceiling colors\n", 5);
+			}
 			free_2D_array((void**)tmp_2);
 			free_2D_array((void**)tmp);
 		}

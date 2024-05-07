@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/07 17:43:02 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/07 18:37:08 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/07 20:05:02 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_data
 	mlx_image_t	*player;
 	mlx_t		*mlx;
 	char		**map_info;
+	bool		map_elements_parsed;
 	t_map_looks	map_looks;
 }				t_data;
 
@@ -69,6 +70,7 @@ void	error_and_exit(t_data *data, char *s, int ierr);
 /* Utilities */
 bool	is_whitespace(char c);
 char	**ft_split_cub3d(t_data *data, char const *s);
+int		ft_atoi_cub3d(t_data *data, const char *str, char**	tmp, char**	tmp_2);
 
 
 #endif

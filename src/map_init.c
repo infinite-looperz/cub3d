@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/07 16:50:33 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/07 17:20:27 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/07 19:50:33 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	data_init(t_data* data)
 	data->player = NULL;
 	data->mlx = NULL;
 	data->map_info = NULL;
+	data->map_elements_parsed = false;
 	while (i < 4)
 	{
 		data->map_looks.textures[i] = NULL;
