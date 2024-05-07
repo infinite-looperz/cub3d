@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/02 16:59:34 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/07 20:04:19 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/07 20:58:05 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ void	store_textures_and_colors(t_data *data)
 		}
 		else if (ft_strlen(tmp[0]) >= 3)
 		{
-			printf("Probably the map");
+			// printf("Probably the map");
+			free_2D_array((void**)tmp);
 		}
 		else
 			error_and_exit(data, "Wrong element identifier or the map is not the last element\n", 6);
@@ -101,21 +102,21 @@ void	print_stored_info(t_data *data)
 	int i;
 	
 	i = 0;
-	printf("-----------Map info-----------\n");
+	printf("\n-----------Map info-----------\n");
 	while (data->map_info[i] != NULL)
 	{
 		ft_printf("%s", data->map_info[i]);
 		i++;
 	}
 	i = 0;
-	printf("-----------Texture files-----------\n");
+	printf("\n-----------Texture files-----------\n");
 	while (data->map_looks.textures[i] != NULL && i < 4)
 	{
 		printf("%s\n", data->map_looks.textures[i]);
 		i++;
 	}
 	i = 0;
-	printf("-----------Colors-----------\n");
+	printf("\n-----------Colors-----------\n");
 	while (i < 3)
 	{
 		printf("floor: %d\n", data->map_looks.floor_color[i]);
