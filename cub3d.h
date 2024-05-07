@@ -4,6 +4,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <errno.h>
 # include <MLX42/include/MLX42/MLX42.h>
 # include <libft/libft.h>
 
@@ -38,13 +39,19 @@ typedef struct s_data
 	t_map_looks	map_looks;
 }				t_data;
 
+/* Initialization */
+void	data_init(t_data* data);
+
 /* Validation */
-void	validate_args(int arg_count, char** args);
-void	validate_map(t_data *data, char* filename);
+void	validate_args(t_data* data, int arg_count, char** args);
+void	validate_map(t_data* data, char* filename);
 
 
 /* Free memory */
 void	free_main_struct(t_data* data);
 void	free_2D_array(void** array);
+
+/* Errors */
+void	error_and_exit(t_data* data, char* s, int ierr);
 
 #endif

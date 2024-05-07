@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   map_init.c                                         :+:    :+:            */
+/*   errors.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/05/07 16:50:33 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/07 16:53:33 by akasiota      ########   odam.nl         */
+/*   Created: 2024/05/07 16:41:19 by akasiota      #+#    #+#                 */
+/*   Updated: 2024/05/07 17:09:45 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	data_init(t_data* data)
+void	error_and_exit(t_data* data, char* s, int ierr)
 {
-	int	i;
-
-	i = 0;
-	data->player = NULL;
-	data->mlx = NULL;
-	data->map_info = NULL;
-	while (i < 4)
-	{
-		data->map_looks.textures[i] = NULL;
-		i++;
-	}
+	free_main_struct(data);
+	ft_putstr_fd(s, STDERR_FILENO);
+	exit(ierr);
 }

@@ -6,7 +6,7 @@
 #    By: akasiota <akasiota@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/03/15 17:23:44 by akasiota      #+#    #+#                  #
-#    Updated: 2024/05/06 15:00:46 by akasiota      ########   odam.nl          #
+#    Updated: 2024/05/07 16:42:10 by akasiota      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,8 @@ OBJ_DIR := ./obj
 SRC :=	$(SRC_DIR)/main.c \
 		$(SRC_DIR)/map_init.c \
 		$(SRC_DIR)/parser.c \
-		$(SRC_DIR)/free_memory.c
+		$(SRC_DIR)/free_memory.c \
+		$(SRC_DIR)/errors.c
 OBJ := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
 
 RM := rm -f

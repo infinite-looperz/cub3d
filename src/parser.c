@@ -6,23 +6,19 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/02 16:59:34 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/06 15:14:06 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/07 17:13:30 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	validate_args(int arg_count, char** args)
+void	validate_args(t_data* data, int arg_count, char** args)
 {
 	int	map_name_len;
 	int	i;
 
 	if (arg_count != 2)
-	{
-		// make an exit error function that frees allocated stuff, throws an error and exits
-		ft_printf("Usage: ./cub3d [filename]\n");
-		exit(1);
-	}
+		error_and_exit(data, "Usage: ./cub3d [filename]\n", 1);
 	map_name_len = ft_strlen(args[1]);
 	i = 0;
 	if (map_name_len > 4)
@@ -30,16 +26,10 @@ void	validate_args(int arg_count, char** args)
 		while ((map_name_len - i) > 4)
 			i++;
 		if (ft_strncmp(&args[1][i], ".cub", 4) != 0)
-		{
-			// make an exit error function that frees allocated stuff, throws an error and exits
-			ft_printf("Filename extension needs to be .cub\n");
-			exit(1);
-		}
+			error_and_exit(data, "Filename extension needs to be .cub\n", 2);
 	}
 	else
-		exit(1);
-		// error
-	
+		error_and_exit(data, "Filename needs extension .cub\n", 3);
 	return ;
 }
 
@@ -65,10 +55,7 @@ void	store_textures_and_colors(t_data *data)
 			else if (ft_strncmp(tmp[0], "EA", 3) == 0)
 				data->map_looks.textures[EAST] = tmp[1];
 			else
-			{
-				printf("Wrong element identifier for wall textures\n");
-				exit(1);
-			}
+				error_and_exit(data, "Wrong element identifier for wall textures\n", 4);
 			free(tmp[0]);
 			free(tmp);
 			tmp = NULL;
@@ -89,11 +76,7 @@ void	store_textures_and_colors(t_data *data)
 				data->map_looks.ceiling_color[BLUE] = ft_atoi(tmp_2[BLUE]);		
 			}
 			else
-			{
-				printf("Wrong element identifier for floor and/or ceiling colors\n");
-				exit(1);
-			}
-			// Free tmp_2
+				error_and_exit(data, "Wrong element identifier for floor and/or ceiling colors\n", 5);
 			free_2D_array((void**)tmp_2);
 			free_2D_array((void**)tmp);
 		}
@@ -102,10 +85,7 @@ void	store_textures_and_colors(t_data *data)
 			printf("Probably the map");
 		}
 		else
-		{
-			printf("Wrong element identifier or the map is not the last element\n");
-			exit(1);
-		}
+			error_and_exit(data, "Wrong element identifier or the map is not the last element\n", 6);
 		i++;
 	}
 }
@@ -128,7 +108,7 @@ void	print_stored_info(t_data *data)
 	}
 }
 
-void	validate_map(t_data *data, char* filename)
+void	validate_map(t_data* data, char* filename)
 {
 	int		fd;
 	// char*	line;
@@ -149,7 +129,7 @@ void	validate_map(t_data *data, char* filename)
 		if (data->map_info[i] != NULL && i >= 10000)
 		{
 			// reallocate memory
-			printf("Need more pointers for the lines\n");
+			error_and_exit(data, "Need more memory for the map\n", 0);
 		}
 	}
 	store_textures_and_colors(data);
