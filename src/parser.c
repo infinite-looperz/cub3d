@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/02 16:59:34 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/10 20:07:02 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/10 21:08:53 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,17 @@ static void	store_coordinates(t_data *data, size_t i)
 	}
 }
 
-static void	store_textures_and_colors(t_data *data)
+static void	store_texture(t_data *data, t_direction direction, char** tmp, size_t i)
+{
+	tmp = ft_split_cub3d(data, data->map_info[i]);
+	data->map_looks.textures[direction] = tmp[1];
+	data->map_looks.direction_parsed[direction] = true;
+	free_and_null((void**)&tmp[0]);
+	free(tmp);
+	tmp = NULL;
+}
+
+static void	store_map_info(t_data *data)
 {
 	char**	tmp;
 	char**	tmp_2;
@@ -69,38 +79,14 @@ static void	store_textures_and_colors(t_data *data)
 			i++;
 		else
 		{
-			if (ft_strncmp(data->map_info[i], "NO ", 3) == 0 && data->map_looks.NO_parsed == false)
-			{
-				tmp = ft_split_cub3d(data, data->map_info[i]);
-				data->map_looks.textures[NORTH] = tmp[1];
-				data->map_looks.NO_parsed = true;
-				free_and_null(tmp[0]);
-				free_and_null(tmp);
-			}
-			else if (ft_strncmp(data->map_info[i], "SO ", 3) == 0 && data->map_looks.SO_parsed == false)
-			{
-				tmp = ft_split_cub3d(data, data->map_info[i]);
-				data->map_looks.textures[SOUTH] = tmp[1];
-				data->map_looks.SO_parsed = true;
-				free_and_null(tmp[0]);
-				free_and_null(tmp);
-			}
-			else if (ft_strncmp(data->map_info[i], "WE ", 3) == 0 && data->map_looks.WE_parsed == false)
-			{
-				tmp = ft_split_cub3d(data, data->map_info[i]);
-				data->map_looks.textures[WEST] = tmp[1];
-				data->map_looks.WE_parsed = true;
-				free_and_null(tmp[0]);
-				free_and_null(tmp);
-			}
-			else if (ft_strncmp(data->map_info[i], "EA ", 3) == 0 && data->map_looks.EA_parsed == false)
-			{
-				tmp = ft_split_cub3d(data, data->map_info[i]);
-				data->map_looks.textures[EAST] = tmp[1];
-				data->map_looks.EA_parsed = true;
-				free_and_null(tmp[0]);
-				free_and_null(tmp);
-			}
+			if (ft_strncmp(data->map_info[i], "NO ", 3) == 0 && data->map_looks.direction_parsed[NORTH] == false)
+				store_texture(data, NORTH, tmp, i);
+			else if (ft_strncmp(data->map_info[i], "SO ", 3) == 0 && data->map_looks.direction_parsed[SOUTH] == false)
+				store_texture(data, SOUTH, tmp, i);
+			else if (ft_strncmp(data->map_info[i], "WE ", 3) == 0 && data->map_looks.direction_parsed[WEST] == false)
+				store_texture(data, WEST, tmp, i);
+			else if (ft_strncmp(data->map_info[i], "EA ", 3) == 0 && data->map_looks.direction_parsed[EAST] == false)
+				store_texture(data, EAST, tmp, i);
 			else if (ft_strncmp(data->map_info[i], "F ", 2) == 0 && data->map_looks.F_parsed == false)
 			{
 				tmp = ft_split_cub3d(data, data->map_info[i]);
@@ -130,7 +116,7 @@ static void	store_textures_and_colors(t_data *data)
 			}
 			else
 			{
-				// free_2D_array((void**)tmp);
+				free_2D_array((void**)tmp);
 				error_and_exit(data, "Wrong element identifier or the map is not the last element\n", 6);
 			}
 			i++;
@@ -178,7 +164,7 @@ static void	print_stored_info(t_data *data)
 	}
 }
 
-void	validate_map(t_data* data, char* filename)
+void	open_and_store(t_data* data, char* filename)
 {
 	int		fd;
 	// char*	line;
@@ -200,7 +186,7 @@ void	validate_map(t_data* data, char* filename)
 			error_and_exit(data, "Need more memory for the map\n", 0);
 		}
 	}
-	store_textures_and_colors(data);
+	store_map_info(data);
 	// Test what is stored
 	print_stored_info(data);
 }
@@ -214,7 +200,7 @@ void	validate_map(t_data* data, char* filename)
 
 
 
-// static void	store_textures_and_colors(t_data *data)
+// static void	store_map_info(t_data *data)
 // {
 // 	char**	tmp;
 // 	char**	tmp_2;

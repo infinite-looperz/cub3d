@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/07 17:31:48 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/10 15:22:45 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/10 20:40:10 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ bool	is_whitespace(char c)
 
 bool	check_parsing_stage(t_data *data)
 {
-	if (data->map_looks.NO_parsed == true && data->map_looks.SO_parsed == true \
-	&& data->map_looks.WE_parsed == true && data->map_looks.EA_parsed == true \
+	if (data->map_looks.direction_parsed[NORTH] == true \
+	&& data->map_looks.direction_parsed[SOUTH] == true \
+	&& data->map_looks.direction_parsed[WEST] == true \
+	&& data->map_looks.direction_parsed[EAST] == true \
 	&& data->map_looks.F_parsed == true && data->map_looks.C_parsed == true)
 		return (true);
 	return (false);

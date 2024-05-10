@@ -43,7 +43,8 @@ int main(int argc, char *argv[])
 	// map_init();
 	data_init(&data);
 	validate_args(&data, argc, argv);
-	validate_map(&data, argv[1]);
+	open_and_store(&data, argv[1]);
+	validate_map(&data);
 	// printf("%ld\n", sizeof(int32_t));
 	// data.mlx = mlx_init(1500, 1000, "cub3D", true);
 	// map_build(&data);

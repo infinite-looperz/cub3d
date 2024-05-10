@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/10 15:58:47 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/10 15:59:08 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/10 21:14:10 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,54 @@ void	validate_args(t_data* data, int arg_count, char** args)
 	else
 		error_and_exit(data, "Filename needs extension .cub\n", 3);
 	return ;
+}
+
+static void	validate_point(t_data *data, size_t y, size_t x)
+{
+	if (data->map_coords[y][x] != '0' && data->map_coords[y][x] != '1' \
+	&& data->map_coords[y][x] != 'N' && data->map_coords[y][x] != 'S' \
+	&& data->map_coords[y][x] != 'W' && data->map_coords[y][x] != 'E')
+		error_and_exit(data, "Unidentified tiles in map\n", 10);
+}
+
+static void	validate_enclosure(t_data *data)
+{
+	size_t	y;
+	size_t	x;
+
+	y = 0;
+	x = 0;
+	while (y < data->map_height)
+	{
+		if (data->map_coords[y][0] != '1' || data->map_coords[y][data->map_width - 1] != '1')
+			error_and_exit(data, "Map isn't enclosed by walls\n", 122);
+		y++;
+	}
+	while (x < data->map_width)
+	{
+		if (data->map_coords[0][x] != '1' || data->map_coords[data->map_height - 1][x] != '1')
+			error_and_exit(data, "Map isn't enclosed by walls\n", 122);
+		x++;
+	}
+}
+
+void	validate_map(t_data *data)
+{
+	size_t	y;
+	size_t	x;
+	
+
+	y = 0;
+	x = 0;
+	while (y < data->map_height)
+	{
+		while (x < data->map_width)
+		{
+			validate_point(data, y, x);
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+	validate_enclosure(data);
 }

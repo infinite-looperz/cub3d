@@ -6,18 +6,18 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/06 14:54:52 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/10 19:56:59 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/10 20:16:50 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	free_and_null(void *p)
+void	free_and_null(void **p)
 {
-	if (p != NULL)
+	if (*p != NULL)
 	{
-		free(p);
-		p = NULL;
+		free(*p);
+		*p = NULL;
 	}
 }
 
@@ -28,11 +28,12 @@ void	free_2D_array(void **array)
 	i = 0;
 	while (array != NULL && array[i] != NULL)
 	{
-		free_and_null(array[i]);
+		free_and_null(&array[i]);
 		array[i] = NULL;
 		i++;
 	}
-	free_and_null(array);
+	free(array);
+	array = NULL;
 }
 
 void	free_main_struct(t_data *data)
@@ -45,7 +46,7 @@ void	free_main_struct(t_data *data)
 	i = 0;
 	while (i < 4)
 	{
-		free_and_null(data->map_looks.textures[i]);
+		free_and_null((void**)&data->map_looks.textures[i]);
 		i++;
 	}
 }
