@@ -6,7 +6,7 @@
 #    By: akasiota <akasiota@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/03/15 17:23:44 by akasiota      #+#    #+#                  #
-#    Updated: 2024/05/07 19:55:44 by akasiota      ########   odam.nl          #
+#    Updated: 2024/05/10 17:25:33 by akasiota      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,11 @@ OBJ_DIR := ./obj
 # SRC = $(wildcard $(SRC_DIR)/*.c)
 SRC :=	$(SRC_DIR)/main.c \
 		$(SRC_DIR)/map_init.c \
+		$(SRC_DIR)/validation.c \
 		$(SRC_DIR)/parser.c \
 		$(SRC_DIR)/free_memory.c \
 		$(SRC_DIR)/errors.c \
+		$(SRC_DIR)/ft_calloc_cub3d.c \
 		$(SRC_DIR)/ft_split_cub3d.c \
 		$(SRC_DIR)/ft_atoi_cub3d.c \
 		$(SRC_DIR)/utilities.c

@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   errors.c                                           :+:    :+:            */
+/*   ft_calloc_cub3d.c                                  :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
+/*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/05/07 16:41:19 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/10 15:04:20 by akasiota      ########   odam.nl         */
+/*   Created: 2022/11/19 19:44:51 by seyildir      #+#    #+#                 */
+/*   Updated: 2024/05/10 17:25:52 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	error_and_exit(t_data* data, char* s, int ierr)
+void	*ft_calloc_cub3d(t_data *data, size_t count, size_t size)
 {
-	/* Make sure that it is updated for memory freeing */
-	free_main_struct(data);
-	ft_putstr_fd("Error\n", STDERR_FILENO);
-	ft_putstr_fd(s, STDERR_FILENO);
-	exit(ierr);
+	void	*mem;
+
+	mem = (void *) malloc (size * count);
+	if (!mem)
+		error_and_exit(data, "Malloc error\n", 42);
+	ft_bzero(mem, count * size);
+	return (mem);
 }

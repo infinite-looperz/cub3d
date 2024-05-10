@@ -6,7 +6,7 @@
 /*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/30 15:49:51 by seyildir      #+#    #+#                 */
-/*   Updated: 2024/05/07 18:36:50 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/10 17:26:41 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ static void	ft_free2m(char	**data, size_t word)
 	{
 		if (data[i])
 			free(data[i]);
+		data[i] = NULL;
 		i++;
 	}
 	free(data);
+	data = NULL;
 }
 
 static int	word_count(char const *s)
@@ -93,9 +95,7 @@ char	**ft_split_cub3d(t_data *data, char const *s)
 	if (!s)
 		return (0);
 	w_amount = word_count(s);
-	rtn = (char **)ft_calloc(w_amount + 1, sizeof(char *));
-	if (!rtn)
-		error_and_exit(data, "Malloc error", 42);
+	rtn = (char **)ft_calloc_cub3d(data, w_amount + 1, sizeof(char *));
 	if (word_fill((char *)s, rtn, w_amount) == -1)
 		error_and_exit(data, "Malloc error", 42);
 	return (rtn);
