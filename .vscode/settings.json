@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"mathcalls-narrow.h": "c",
+		"unistd.h": "c",
+		"cmath": "c"
+	}
+}
