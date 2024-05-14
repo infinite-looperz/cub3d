@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/02 16:59:34 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/10 21:08:53 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/14 15:08:34 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,16 @@ static void	store_coordinates(t_data *data, size_t i)
 		if (data->map_info[i][x] == '\n')
 			error_and_exit(data, "Map contains an empty line\n", 9);
 		data->map_coords[y] = ft_calloc_cub3d(data, data->map_width + 1, sizeof(char));
-		while (x < data->map_width)
+		while (x < data->map_width && data->map_info[i][x] != '\0')
 		{
-			if (x < ft_strlen(data->map_info[i]) && data->map_info[i][x] != '\0' && data->map_info[i][x] != '\n' && data->map_info[i][x] != ' ')
+			// if (x < ft_strlen(data->map_info[i]) && data->map_info[i][x] != '\0' && data->map_info[i][x] != '\n' && data->map_info[i][x] != ' ')
+			// 	data->map_coords[y][x] = data->map_info[i][x];
+			// else
+			// 	data->map_coords[y][x] = '1';
+			if (data->map_info[i][x] != '\n' && data->map_info[i][x] != ' ')
 				data->map_coords[y][x] = data->map_info[i][x];
 			else
-				data->map_coords[y][x] = '1';
+				data->map_coords[y][x] = 'V';
 			x++;
 		}
 		x = 0;

@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/07 17:43:02 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/10 21:06:25 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/14 15:31:07 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_map_looks
 	bool		direction_parsed[4];
 	bool		F_parsed;
 	bool		C_parsed;
+	bool		player_pos_parsed;
 }				t_map_looks;
 
 
