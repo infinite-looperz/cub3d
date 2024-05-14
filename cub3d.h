@@ -15,6 +15,8 @@
 
 # include <stdio.h>
 # include <unistd.h>
+# include <stdlib.h>
+# include <math.h>
 # include <fcntl.h>
 # include <errno.h>
 # include <MLX42/include/MLX42/MLX42.h>
@@ -50,6 +52,7 @@ typedef struct s_data
 {
 	mlx_image_t	*player;
 	mlx_t		*mlx;
+	char		**map;
 	char		**map_info;
 	char		**map_coords;
 	// bool		map_elements_parsed;
