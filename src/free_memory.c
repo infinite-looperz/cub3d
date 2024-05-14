@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/06 14:54:52 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/10 20:16:50 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/14 17:48:08 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	free_and_null(void **p)
 	}
 }
 
-void	free_2D_array(void **array)
+void	free_2d_array(void **array)
 {
 	int	i;
 
@@ -38,15 +38,14 @@ void	free_2D_array(void **array)
 
 void	free_main_struct(t_data *data)
 {
+	int	i;
 	/* Make sure that it is updated for memory freeing */
-	int i;
-	
-	free_2D_array((void**)data->map_info);
-	free_2D_array((void**)data->map_coords);
+	free_2d_array((void **)data->map_info);
+	free_2d_array((void **)data->map_coords);
 	i = 0;
 	while (i < 4)
 	{
-		free_and_null((void**)&data->map_looks.textures[i]);
+		free_and_null((void **)&data->map_looks.textures[i]);
 		i++;
 	}
 }

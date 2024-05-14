@@ -6,7 +6,7 @@
 #    By: akasiota <akasiota@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/03/15 17:23:44 by akasiota      #+#    #+#                  #
-#    Updated: 2024/05/10 17:25:33 by akasiota      ########   odam.nl          #
+#    Updated: 2024/05/14 17:57:31 by akasiota      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ OBJ_DIR := ./obj
 SRC :=	$(SRC_DIR)/main.c \
 		$(SRC_DIR)/map_init.c \
 		$(SRC_DIR)/validation.c \
+		$(SRC_DIR)/validate_args.c \
 		$(SRC_DIR)/parser.c \
 		$(SRC_DIR)/free_memory.c \
 		$(SRC_DIR)/errors.c \

@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/07 17:43:02 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/14 15:31:07 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/14 17:57:48 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ typedef struct s_data
 	char		**map;
 	char		**map_info;
 	char		**map_coords;
-	// bool		map_elements_parsed;
 	t_map_looks	map_looks;
 	size_t		map_height;
 	size_t		map_width;
@@ -73,7 +72,7 @@ void	validate_map(t_data *data);
 
 /* Free memory */
 void	free_main_struct(t_data *data);
-void	free_2D_array(void **array);
+void	free_2d_array(void **array);
 void	free_and_null(void **p);
 
 /* Errors */

@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/07 19:55:05 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/10 18:48:07 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/14 17:48:40 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	ft_atoi_cub3d(t_data *data, const char *str, char **tmp, char **tmp_2)
 	sy = 1;
 	if (str == NULL)
 	{
-		free_2D_array((void **)tmp_2);
-		free_2D_array((void **)tmp);
+		free_2d_array((void **)tmp_2);
+		free_2d_array((void **)tmp);
 		error_and_exit(data, "Atoi for cub3d failed because str is NULL", 84);
 	}
 	while ((str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
