@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/06 14:54:52 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/14 17:48:08 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/14 18:17:15 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	free_main_struct(t_data *data)
 {
 	int	i;
 	/* Make sure that it is updated for memory freeing */
-	free_2d_array((void **)data->map_info);
-	free_2d_array((void **)data->map_coords);
+	free_2d_array((void **)data->map_i);
+	free_2d_array((void **)data->map_c);
 	i = 0;
 	while (i < 4)
 	{
