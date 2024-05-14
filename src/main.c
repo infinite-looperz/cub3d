@@ -49,9 +49,13 @@ int	map_init(t_data *data)
 	// data->p_x = 14; // player x position in the map
 	// data->w_map = 25; // map width
 	// data->h_map = 9; // map height
+	data->player = mlx_new_image(data->mlx, 10, 10);
+	ft_memset(data->player->pixels, 255, 400);
+	mlx_image_to_window(data->mlx, data->player, 750, 500);
+	return (0);
 }
 
-int main(int argc, char const *argv[])
+int main(int argc, char *argv[])
 {
 	t_data	data;
 	map_init(&data);
@@ -61,5 +65,19 @@ int main(int argc, char const *argv[])
 	mlx_loop_hook(data.mlx, move, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
+=======
+	// map_init();
+	data_init(&data);
+	validate_args(&data, argc, argv);
+	open_and_store(&data, argv[1]);
+	validate_map(&data);
+	// printf("%ld\n", sizeof(int32_t));
+	// data.mlx = mlx_init(1500, 1000, "cub3D", true);
+	// map_build(&data);
+	// // mlx_key_hook(data.mlx, move, &data);
+	// mlx_loop_hook(data.mlx, move, &data);
+	// mlx_loop(data.mlx);
+	// mlx_terminate(data.mlx);
+	free_main_struct(&data);
 	return 0;
 }
