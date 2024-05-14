@@ -6,11 +6,26 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/14 18:19:53 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/14 19:11:10 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/14 20:53:51 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+// static void	get_map_info_lines(t_data *data, char *filename)
+// {
+// 	char*	line;
+// 	int		fd;
+// 	size_t	i;
+
+// 	line = NULL;
+// 	i = 0;
+// 	fd = open(filename, O_RDONLY);
+// 	if (fd < 0)
+// 		error_and_exit(data, "Error opening the map file\n", 8);
+// 	line = 
+	
+// }
 
 void	open_and_store(t_data *data, char *filename)
 {
