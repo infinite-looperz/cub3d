@@ -6,7 +6,7 @@
 #    By: akasiota <akasiota@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/03/15 17:23:44 by akasiota      #+#    #+#                  #
-#    Updated: 2024/05/14 19:10:19 by akasiota      ########   odam.nl          #
+#    Updated: 2024/05/15 18:10:59 by akasiota      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,29 +30,43 @@ ifeq ($(OS), Linux)
 endif
 
 SRC_DIR := ./src
+
 OBJ_DIR := ./obj
-# SRC = $(wildcard $(SRC_DIR)/*.c)
+# SRC = $(wildcard $(SRC_DIR)/**/*.c)
 SRC :=	$(SRC_DIR)/main.c \
 		$(SRC_DIR)/map_init.c \
-		$(SRC_DIR)/parser.c \
-		$(SRC_DIR)/parser_utils.c \
-		$(SRC_DIR)/parser_utils_2.c \
-		$(SRC_DIR)/validation.c \
-		$(SRC_DIR)/validate_args.c \
-		$(SRC_DIR)/free_memory.c \
-		$(SRC_DIR)/ft_calloc_cub3d.c \
-		$(SRC_DIR)/ft_split_cub3d.c \
-		$(SRC_DIR)/ft_atoi_cub3d.c \
-		$(SRC_DIR)/errors.c \
-		$(SRC_DIR)/utilities.c
-OBJ := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
+		$(SRC_DIR)/parser/parser.c \
+		$(SRC_DIR)/parser/parser_utils.c \
+		$(SRC_DIR)/parser/parser_utils_2.c \
+		$(SRC_DIR)/parser/validation.c \
+		$(SRC_DIR)/parser/validate_args.c \
+		$(SRC_DIR)/utilities/free_memory.c \
+		$(SRC_DIR)/utilities/ft_calloc_cub3d.c \
+		$(SRC_DIR)/utilities/ft_split_cub3d.c \
+		$(SRC_DIR)/utilities/ft_atoi_cub3d.c \
+		$(SRC_DIR)/utilities/errors.c \
+		$(SRC_DIR)/utilities/utilities.c
+# OBJ := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
+OBJ :=	$(OBJ_DIR)/main.o \
+		$(OBJ_DIR)/map_init.o \
+		$(OBJ_DIR)/parser/parser.o \
+		$(OBJ_DIR)/parser/parser_utils.o \
+		$(OBJ_DIR)/parser/parser_utils_2.o \
+		$(OBJ_DIR)/parser/validation.o \
+		$(OBJ_DIR)/parser/validate_args.o \
+		$(OBJ_DIR)/utilities/free_memory.o \
+		$(OBJ_DIR)/utilities/ft_calloc_cub3d.o \
+		$(OBJ_DIR)/utilities/ft_split_cub3d.o \
+		$(OBJ_DIR)/utilities/ft_atoi_cub3d.o \
+		$(OBJ_DIR)/utilities/errors.o \
+		$(OBJ_DIR)/utilities/utilities.o
 
 RM := rm -f
 
 all: $(MLX42) $(LIBFT) $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	mkdir -p $(OBJ_DIR)
+	mkdir -p $(@D)
 	cc $(CFLAGS) -o $@ -c $< -I ./
 	
 $(NAME): $(OBJ)

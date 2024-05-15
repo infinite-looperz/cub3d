@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parser_utils.c                                     :+:    :+:            */
+/*   parser_utils_2.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/02 16:59:34 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/14 19:05:19 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/15 18:02:00 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,15 @@ void	validate_colors(t_data *data)
 			error_and_exit(data, "Color values out of range\n", 85);
 		i++;
 	}
+}
+
+bool	check_parsing_stage(t_data *data)
+{
+	if (data->map_looks.direction_parsed[NORTH] == true \
+	&& data->map_looks.direction_parsed[SOUTH] == true \
+	&& data->map_looks.direction_parsed[WEST] == true \
+	&& data->map_looks.direction_parsed[EAST] == true \
+	&& data->map_looks.f_parsed == true && data->map_looks.c_parsed == true)
+		return (true);
+	return (false);
 }
