@@ -1,0 +1,4 @@
+# Ignore all .cub files
+*.cub
+
+/.vscode/
