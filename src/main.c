@@ -1,5 +1,9 @@
 #include <cub3d.h>
 
+#define DPS_W 1900
+#define DPS_H 1100
+
+
 void moves(t_data *data, int dist, int drct)
 {
 	if (drct)
@@ -25,10 +29,25 @@ void move(void *param)
 		moves(data, -1, 1);
 }
 
-int	map_build(t_data *data)
+void	ray_cast(void *par)
 {
-	data->player = mlx_new_image(data->mlx, 1500, 1000);
-	ft_memset(data->player->pixels, 255, 1500*1000*4);
+	t_data	*data;
+
+	data = par;
+	mlx_delete_image(data->mlx, data->player);
+	data->player = mlx_new_image(data->mlx, DPS_W, DPS_H);
+	int y;
+	int x;
+	x = 100;
+	while (x < 700)
+	{
+		y = 100;
+		while (y < 500)
+		{
+			mlx_put_pixel(data->player, x, y++, 0xff0000ff);
+		}
+		x++;
+	}
 	mlx_image_to_window(data->mlx, data->player, 0, 0);
 }
 
@@ -55,10 +74,11 @@ int main(int argc, char const *argv[])
 {
 	t_data	data;
 	map_init(&data);
-	data.mlx = mlx_init(1500, 1000, "cub3D", true);
-	map_build(&data);
+	data.mlx = mlx_init(DPS_W, DPS_H, "cub3D", true);
 	// mlx_key_hook(data.mlx, move, &data);
-	mlx_loop_hook(data.mlx, move, &data);
+	data.x = 100;
+	mlx_loop_hook(data.mlx, ray_cast, &data);
+	// mlx_loop_hook(data.mlx, move, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
 	return 0;

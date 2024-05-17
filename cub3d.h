@@ -12,6 +12,7 @@ typedef struct s_data
 {
 	mlx_image_t	*player;
 	mlx_t		*mlx;
+	int			x;
 	char		**map;
 }				t_data;
 
