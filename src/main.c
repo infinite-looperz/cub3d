@@ -16,7 +16,6 @@ void move(void *param)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
-<<<<<<< HEAD
 		moves(data, -5, VERTICAL);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_S))
 		moves(data, 5, VERTICAL);
@@ -37,29 +36,10 @@ void make_color(mlx_image_t *p, int x, int y)
 		p->pixels[i++] = 255;
 	}
 	
-=======
-		moves(data, -1, 0);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_S))
-		moves(data, 1, 0);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
-		moves(data, 1, 1);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
-		moves(data, -1, 1);
->>>>>>> e014aa3ab213604fb699bddc110112514b3ea860
 }
 
 int	map_build(t_data *data)
 {
-<<<<<<< HEAD
-	int px;
-	int py;
-
-	px = 15;
-	py = 15;
-	data->player = mlx_new_image(data->mlx, px, py);
-	make_color(data->player, px, py);
-	mlx_image_to_window(data->mlx, data->player, 750, 500);
-=======
 	data->player = mlx_new_image(data->mlx, 1500, 1000);
 	ft_memset(data->player->pixels, 255, 1500*1000*4);
 	mlx_image_to_window(data->mlx, data->player, 0, 0);
@@ -82,24 +62,16 @@ int	map_init(t_data *data)
 	// data->p_x = 14; // player x position in the map
 	// data->w_map = 25; // map width
 	// data->h_map = 9; // map height
->>>>>>> e014aa3ab213604fb699bddc110112514b3ea860
 }
 
-int main(int argc, char const *argv[])
+int main(int argc, char *argv[])
 {
 	t_data	data;
-<<<<<<< HEAD
-
-	// map_init();
-	printf("%ld\n", sizeof(int32_t));
-=======
 	map_init(&data);
->>>>>>> e014aa3ab213604fb699bddc110112514b3ea860
 	data.mlx = mlx_init(1500, 1000, "cub3D", true);
 	map_build(&data);
 	// mlx_key_hook(data.mlx, move, &data);
 	mlx_loop_hook(data.mlx, move, &data);
-	// mlx_loob_hook(data.mlx, ray_cast, );
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
 	return 0;
