@@ -365,7 +365,7 @@ float get_v_inter(t_mlx *mlx, float angl) // get the vertical intersection
 
  x_step = TILE_SIZE; 
  y_step = TILE_SIZE * tan(angl);
- v_x = floor(mlx->ply->plyr_x / TILE_SIZE) * TILE_SIZE;
+ v_x = mlx->ply->plyr_x - (mlx->ply->plyr_x % TILE_SIZE);
  pixel = inter_check(angl, &v_x, &x_step, 0); // check the intersection and get the pixel value
  v_y = mlx->ply->plyr_y + (v_x - mlx->ply->plyr_x) * tan(angl);
  if ((unit_circle(angl, 'x') && y_step < 0) || (!unit_circle(angl, 'x') && y_step > 0)) // check y_step value
@@ -422,8 +422,8 @@ void game_loop(void *ml) // game loop
 
 void init_the_player(t_mlx mlx) // init the player structure
 {
- mlx.ply->plyr_x = mlx.dt->p_x * TILE_SIZE + TILE_SIZE / 2; // player x position in pixels in the center of the tile
- mlx.ply->plyr_y = mlx.dt->p_y * TILE_SIZE + TILE_SIZE / 2; // player y position in pixels in the center of the tile
+ mlx.ply->plyr_x = mlx.dt->p_x * TILE_SIZE - TILE_SIZE / 2; // player x position in pixels in the center of the tile
+ mlx.ply->plyr_y = mlx.dt->p_y * TILE_SIZE - TILE_SIZE / 2; // player y position in pixels in the center of the tile
  mlx.ply->fov_rd = (FOV * M_PI) / 180; // field of view in radians
  mlx.ply->angle = M_PI; // player angle
  //the rest of the variables are initialized to zero by calloc
