@@ -42,7 +42,7 @@ static void	initialize_colors_arrays(t_data *data)
 
 void	data_init(t_data *data)
 {
-	data->player = NULL;
+	data->plyr = NULL;
 	data->mlx = NULL;
 	data->map_i = NULL;
 	data->map_c = NULL;

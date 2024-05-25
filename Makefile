@@ -16,7 +16,7 @@ CC := cc
 MLX42 := MLX42/build/libmlx42.a
 LIBFT := libft/libft.a
 
-CFLAGS := -Wall -Wextra -Werror -g
+CFLAGS := -g
 LIBS := $(LIBFT) $(MLX42)
 
 OS := $(shell uname)

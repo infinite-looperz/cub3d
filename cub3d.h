@@ -22,6 +22,11 @@
 # include <MLX42/include/MLX42/MLX42.h>
 # include <libft/libft.h>
 
+#define D_W 1900
+#define D_H 1100
+#define FOV 60
+#define T_SIZE 30
+
 typedef enum e_direction
 {
 	NORTH,
@@ -48,9 +53,21 @@ typedef struct s_map_looks
 	bool		player_pos_parsed;
 }				t_map_looks;
 
+typedef	struct s_player
+{
+	double	rad_fov;
+	double	plyr_ang;
+	double	ray_ang;
+	int		x;
+	int		y;
+	int		real_x;
+	int		real_y;
+}				t_player;
+
+
 typedef struct s_data
 {
-	mlx_image_t	*player;
+	mlx_image_t	*img;
 	mlx_t		*mlx;
 	char		**map;
 	char		**map_i;
@@ -58,6 +75,7 @@ typedef struct s_data
 	t_map_looks	map_looks;
 	size_t		map_h;
 	size_t		map_w;
+	t_player	*plyr;
 }				t_data;
 
 /* Initialization */
