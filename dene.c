@@ -292,29 +292,6 @@ int unit_circle(float angle, char c) // check the unit circle
  return (0);
 }
 
-int inter_check(float angle, float *inter, float *step, int is_horizon) // check the intersection
-{
- if (is_horizon)
- {
-  if (angle > 0 && angle < M_PI)
-  {
-   *inter += TILE_SIZE;
-   return (-1);
-  }
-  *step *= -1;
- }
- else
- {
-  if (!(angle > M_PI / 2 && angle < 3 * M_PI / 2)) 
-  {
-   *inter += TILE_SIZE;
-   return (-1);
-  }
-  *step *= -1;
- }
- return (1);
-}
-
 int wall_hit(float x, float y, t_mlx *mlx) // check the wall hit
 {
  int  x_m;
@@ -332,6 +309,18 @@ int wall_hit(float x, float y, t_mlx *mlx) // check the wall hit
  return (1);
 }
 
+int inter_check(float angle, float *inter, float *step, char x_y) // check the intersection
+{
+	if((x_y == 'x' && (angle < M_PI / 2 || angle > 3 * M_PI / 2))
+		|| (x_y == 'y' && (angle > 0 && angle < M_PI)))
+	{
+		*inter += TILE_SIZE;
+		return (1);
+	}
+	*step *= -1;
+	return (-1);
+}
+
 float get_h_inter(t_mlx *mlx, float angl) // get the horizontal intersection
 {
  float h_x;
@@ -343,11 +332,11 @@ float get_h_inter(t_mlx *mlx, float angl) // get the horizontal intersection
  y_step = TILE_SIZE;
  x_step = TILE_SIZE / tan(angl);
  h_y = floor(mlx->ply->plyr_y / TILE_SIZE) * TILE_SIZE;
- pixel = inter_check(angl, &h_y, &y_step, 1);
+ pixel = inter_check(angl, &h_y, &y_step, 'y');
  h_x = mlx->ply->plyr_x + (h_y - mlx->ply->plyr_y) / tan(angl);
  if ((unit_circle(angl, 'y') && x_step > 0) || (!unit_circle(angl, 'y') && x_step < 0)) // check x_step value
   x_step *= -1;
- while (wall_hit(h_x, h_y - pixel, mlx)) // check the wall hit whit the pixel value
+ while (wall_hit(h_x, h_y + pixel, mlx)) // check the wall hit whit the pixel value
  {
   h_x += x_step;
   h_y += y_step;
@@ -366,11 +355,11 @@ float get_v_inter(t_mlx *mlx, float angl) // get the vertical intersection
  x_step = TILE_SIZE; 
  y_step = TILE_SIZE * tan(angl);
  v_x = mlx->ply->plyr_x - (mlx->ply->plyr_x % TILE_SIZE);
- pixel = inter_check(angl, &v_x, &x_step, 0); // check the intersection and get the pixel value
+ pixel = inter_check(angl, &v_x, &x_step, 'x'); // check the intersection and get the pixel value
  v_y = mlx->ply->plyr_y + (v_x - mlx->ply->plyr_x) * tan(angl);
  if ((unit_circle(angl, 'x') && y_step < 0) || (!unit_circle(angl, 'x') && y_step > 0)) // check y_step value
   y_step *= -1;
- while (wall_hit(v_x - pixel, v_y, mlx)) // check the wall hit whit the pixel value
+ while (wall_hit(v_x + pixel, v_y, mlx)) // check the wall hit whit the pixel value
  {
   v_x += x_step;
   v_y += y_step;

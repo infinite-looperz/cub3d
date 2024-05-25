@@ -1,21 +1,65 @@
 #include <cub3d.h>
 
+int	way_check(double angle, double *step, double *way, char x_y)
+{
+	if((x_y == 'x' && (angle < M_PI / 2 || angle > 3 * M_PI / 2))
+		|| (x_y == 'y' && (angle > 0 && angle < M_PI)))
+	{
+		*way += T_SIZE;
+		return (1);
+	}
+	*step *= -1;
+	return (-1);
+}
+
+bool	wall_check(t_data *data, double x, double y)
+{
+	int	x_map;
+	int	y_map;
+
+	if (x < 0 || y < 0)
+		return (false);
+	x_map = x / T_SIZE;
+	y_map = y / T_SIZE;
+	if (y_map >= data->map_h || x_map >= data->map_w)
+		return (false);
+	if (data->map[y_map] && x_map <= ft_strlen(data->map[y_map]))
+		if (data->map[y_map][x_map] == '1')
+			return (true);
+	return (false);
+}
+
 double get_inter_x(t_data *data)
 {
-	data->plyr->real_x;
+	double	x;
+	double	y;
+	double	x_step;
+	double	y_step;
+	int		x_way;
+
+	x_step = T_SIZE;
+	y_step = T_SIZE * tan(data->plyr->ray_ang);
+	x = data->plyr->real_x - (data->plyr->real_x % T_SIZE);
+	x_way = way_check(data->plyr->ray_ang, &x_step, &x_way, 'x');
+	y = data->plyr->real_y + ((x - data->plyr->real_x) * tan(data->plyr->ray_ang));
+	while (!wall_check(data, x + x_way, y))
+	{
+		x += x_step;
+		y += y_step;
+	}
+	return (sqrt(pow(x - data->plyr->real_x, 2) + pow(y - data->plyr->real_y, 2)));
 }
 
 double get_inter_y(t_data *data)
 {
-	double	x_inter;
-	double	y_inter;
+	double	x;
+	double	y;
 	double	x_step;
 	double	y_step;
 	
-	x_inter = data->plyr->real_x - (data->plyr->real_x % T_SIZE);
-	printf("%f\n", x_inter);
-	y_inter = (x_inter - data->plyr->real_x) * tan(data->plyr->ray_ang);
-	return(y_inter);
+	x = T_SIZE - (data->plyr->real_x % T_SIZE);
+	y = (x - data->plyr->real_x) * tan(data->plyr->ray_ang);
+	return(y);
 }
 
 
@@ -24,7 +68,7 @@ void	get_inters(t_data *data)
 	double x;
 	double y;
 	data->plyr->ray_ang = data->plyr->plyr_ang - data->plyr->rad_fov / 2;
-	y = get_inter_y(data);
+	y = get_inter_x(data);
 	// x = get_inter_x(data);
 	printf("%f\n", y);
 }
@@ -74,8 +118,14 @@ void	map(t_data *data)
 	data->map[7] = strdup("1001000000001000001000001");
 	data->map[8] = strdup("1111111111111111111111111");
 	data->map[9] = NULL;
-	data->plyr->x = 14;
-	data->plyr->y = 3;
+	data->plyr->x = 13;
+	data->plyr->y = 2;
+}
+
+void esc(mlx_key_data_t key, void *param)
+{
+	if(key.key == MLX_KEY_ESCAPE)
+		exit(0);
 }
 
 int main(int argc, char *argv[])
@@ -91,6 +141,7 @@ int main(int argc, char *argv[])
 	get_inters(&data);
 	data.mlx = mlx_init(D_W, D_H, "cub3D", true);
 	mlx_loop_hook(data.mlx, ray_cast, &data);
+	mlx_key_hook(data.mlx, esc, NULL);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
 	// free_main_struct(&data);
