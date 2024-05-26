@@ -58,6 +58,7 @@ typedef	struct s_player
 	double	rad_fov;
 	double	plyr_ang;
 	double	ray_ang;
+	int		flag;
 	int		x;
 	int		y;
 	int		real_x;
