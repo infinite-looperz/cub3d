@@ -110,23 +110,20 @@ void	put_lines(t_data *data, int line, double dist)
 	mlx_put_pixel(data->img, line, bot, 0xff0000ff);
 }
 
-void	ray_cast(void *par)
+void	ray_casting(t_data *data)
 {
-	t_data	*data;
 	double dist;
 	double x;
 	double y;
 	int line;
 
 	line = 0;
-	data = par;
-	mlx_delete_image(data->mlx, data->img);
-	data->img = mlx_new_image(data->mlx, D_W, D_H);
 	data->plyr->ray_ang = data->plyr->plyr_ang - data->plyr->rad_fov / 2;
-	while (line < 95)
+	while (line < D_W)
 	{	
 	x = get_inter_x(data, fix_angle(data->plyr->ray_ang));
 	y = get_inter_y(data, fix_angle(data->plyr->ray_ang));
+	data->plyr->flag = 0;
 	if (x <= y)
 		dist = x;
 	else
@@ -134,11 +131,20 @@ void	ray_cast(void *par)
 		dist = y;
 		data->plyr->flag = 1;
 	}
-	printf("x: %f\ny: %f\n", x, y);
 	put_lines(data, line, dist);
-	data->plyr->ray_ang += data->plyr->ray_ang / D_W;
 	line++;
+	data->plyr->ray_ang += 0.00001;//ix
 	}
+}
+
+void	loop(void *par)
+{
+	t_data	*data;
+
+	data = par;
+	mlx_delete_image(data->mlx, data->img);
+	data->img = mlx_new_image(data->mlx, D_W, D_H);
+	ray_casting(data);
 	mlx_image_to_window(data->mlx, data->img, 0, 0);
 }
 
@@ -159,10 +165,10 @@ void	map(t_data *data)
 	data->map[1] = strdup("1000000000000000000100001");
 	data->map[2] = strdup("1001000000000P00000000001");
 	data->map[3] = strdup("1001000000000000001000001");
-	data->map[4] = strdup("1001000000000000001000001");
+	data->map[4] = strdup("1001100000000000001000001");
 	data->map[5] = strdup("1001000000100000001000001");
 	data->map[6] = strdup("1001000000000000001000001");
-	data->map[7] = strdup("1001000000001000001000001");
+	data->map[7] = strdup("1001110000001000001000001");
 	data->map[8] = strdup("1111111111111111111111111");
 	data->map[9] = NULL;
 	data->plyr->x = 14;
@@ -186,7 +192,7 @@ int main(int argc, char *argv[])
 	map(&data);
 	player_init(&data);
 	data.mlx = mlx_init(D_W, D_H, "cub3D", true);
-	mlx_loop_hook(data.mlx, ray_cast, &data);
+	mlx_loop_hook(data.mlx, loop, &data);
 	mlx_key_hook(data.mlx, esc, NULL);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);

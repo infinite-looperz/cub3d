@@ -30,7 +30,7 @@ typedef struct s_player //the player structure
  int  plyr_x; // player x position in pixels
  int  plyr_y; // player y position in pixels
  double angle; // player angle
- float fov_rd; // field of view in radians
+ double fov_rd; // field of view in radians
  int  rot; // rotation flag
  int  l_r; // left right flag
  int  u_d; // up down flag
@@ -205,7 +205,7 @@ void my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color) // put the pixel
  mlx_put_pixel(mlx->img, x, y, color); // put the pixel
 }
 
-float nor_angle(float angle) // normalize the angle
+double nor_angle(double angle) // normalize the angle
 {
  if (angle < 0)
   angle += (2 * M_PI);
@@ -229,7 +229,7 @@ void draw_floor_ceiling(t_mlx *mlx, int ray, int t_pix, int b_pix) // draw the f
 
 int get_color(t_mlx *mlx, int flag) // get the color of the wall
 {
- mlx->ray->ray_ngl = nor_angle(mlx->ray->ray_ngl); // normalize the angle
+//  mlx->ray->ray_ngl = nor_angle(mlx->ray->ray_ngl); // normalize the angle
  if (flag == 0)
  {
   if (mlx->ray->ray_ngl > M_PI / 2 && mlx->ray->ray_ngl < 3 * (M_PI / 2))
@@ -277,7 +277,7 @@ void render_wall(t_mlx *mlx, int ray) // render the wall
 //############################## THE RAYCASTING CODE ##############################//
 //#################################################################################//
 
-int unit_circle(float angle, char c) // check the unit circle
+int unit_circle(double angle, char c) // check the unit circle
 {
  if (c == 'x')
  {
@@ -300,15 +300,15 @@ bool	angle_check(double angle, char c)
 	return (false);
 }
 
-int wall_hit(float x, float y, t_mlx *mlx) // check the wall hit
+int wall_hit(double x, double y, t_mlx *mlx) // check the wall hit
 {
  int  x_m;
  int  y_m;
 
  if (x < 0 || y < 0)
   return (0);
- x_m = floor (x / TILE_SIZE); // get the x position in the map
- y_m = floor (y / TILE_SIZE); // get the y position in the map
+ x_m = x / TILE_SIZE; // get the x position in the map
+ y_m = y / TILE_SIZE; // get the y position in the map
  if ((y_m >= mlx->dt->h_map || x_m >= mlx->dt->w_map))
   return (0);
  if (mlx->dt->map2d[y_m] && x_m <= (int)strlen(mlx->dt->map2d[y_m]))
@@ -317,7 +317,7 @@ int wall_hit(float x, float y, t_mlx *mlx) // check the wall hit
  return (1);
 }
 
-int inter_check(float angle, float *inter, float *step, char x_y) // check the intersection
+int inter_check(double angle, double *inter, double *step, char x_y) // check the intersection
 {
 	if((x_y == 'x' && (angle < M_PI / 2 || angle > 3 * M_PI / 2))
 		|| (x_y == 'y' && (angle > 0 && angle < M_PI)))
@@ -329,35 +329,12 @@ int inter_check(float angle, float *inter, float *step, char x_y) // check the i
 	return (-1);
 }
 
-float get_h_inter(t_mlx *mlx, float angl) // get the horizontal intersection
+double get_v_inter(t_mlx *mlx, double angl) // get the vertical intersection
 {
- float h_x;
- float h_y;
- float x_step;
- float y_step;
- int  pixel;
-
- y_step = TILE_SIZE;
- x_step = TILE_SIZE / tan(angl);
- h_y = floor(mlx->ply->plyr_y / TILE_SIZE) * TILE_SIZE;
- pixel = inter_check(angl, &h_y, &y_step, 'y');
- h_x = mlx->ply->plyr_x + (h_y - mlx->ply->plyr_y) / tan(angl);
- if ((angle_check(angl, 'x') && x_step > 0) || (!angle_check(angl, 'x') && x_step < 0)) // check x_step value
-  x_step *= -1;
- while (wall_hit(h_x, h_y + pixel, mlx)) // check the wall hit whit the pixel value
- {
-  h_x += x_step;
-  h_y += y_step;
- }
- return (sqrt(pow(h_x - mlx->ply->plyr_x, 2) + pow(h_y - mlx->ply->plyr_y, 2))); // get the distance
-}
-
-float get_v_inter(t_mlx *mlx, float angl) // get the vertical intersection
-{
- float v_x;
- float v_y;
- float x_step;
- float y_step;
+ double v_x;
+ double v_y;
+ double x_step;
+ double y_step;
  int  pixel;
 
  x_step = TILE_SIZE; 
@@ -373,6 +350,29 @@ float get_v_inter(t_mlx *mlx, float angl) // get the vertical intersection
   v_y += y_step;
  }
  return (sqrt(pow(v_x - mlx->ply->plyr_x, 2) + pow(v_y - mlx->ply->plyr_y, 2))); // get the distance
+}
+
+double get_h_inter(t_mlx *mlx, double angl) // get the horizontal intersection
+{
+ double h_x;
+ double h_y;
+ double x_step;
+ double y_step;
+ int  pixel;
+
+ y_step = TILE_SIZE;
+ x_step = TILE_SIZE / tan(angl);
+ h_y = mlx->ply->plyr_y - (mlx->ply->plyr_y % TILE_SIZE);
+ pixel = inter_check(angl, &h_y, &y_step, 'y');
+ h_x = mlx->ply->plyr_x + (h_y - mlx->ply->plyr_y) / tan(angl);
+ if ((angle_check(angl, 'x') && x_step > 0) || (!angle_check(angl, 'x') && x_step < 0)) // check x_step value
+  x_step *= -1;
+ while (wall_hit(h_x, h_y + pixel, mlx)) // check the wall hit whit the pixel value
+ {
+  h_x += x_step;
+  h_y += y_step;
+ }
+ return (sqrt(pow(h_x - mlx->ply->plyr_x, 2) + pow(h_y - mlx->ply->plyr_y, 2))); // get the distance
 }
 
 void cast_rays(t_mlx *mlx) // cast the rays
