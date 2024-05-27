@@ -22,7 +22,7 @@
 # define S_H 1000 // screen height
 # define TILE_SIZE 30 // tile size
 # define FOV 60 // field of view
-# define ROTATION_SPEED 0.045 // rotation speed
+# define ROTATION_SPEED 0.05 // rotation speed
 # define PLAYER_SPEED 4 // player speed
 
 typedef struct s_player //the player structure
