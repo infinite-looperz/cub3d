@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/06 14:54:52 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/28 13:13:04 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/28 17:33:12 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,14 @@ void	free_main_struct(t_data *data)
 	/* Make sure that it is updated for memory freeing */
 	free_2d_array((void **)data->map_i);
 	free_2d_array((void **)data->map_c);
-	free_and_null((void**)&data->plyr);
+	free_and_null((void **)&data->plyr);
 	i = 0;
 	while (i < 4)
 	{
 		free_and_null((void **)&data->map_looks.textures[i]);
+		if (data->map_looks.txtr_t[i] != NULL)
+			mlx_delete_texture(data->map_looks.txtr_t[i]);
+		free_2d_array((void **)data->map_looks.txtr_colors[i]);
 		i++;
 	}
 }

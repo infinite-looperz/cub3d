@@ -6,13 +6,13 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/07 16:50:33 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/14 18:17:15 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/28 16:54:40 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-static void	initialize_texture_array(t_data *data)
+static void	initialize_texture_arrays(t_data *data)
 {
 	int	i;
 
@@ -20,6 +20,8 @@ static void	initialize_texture_array(t_data *data)
 	while (i < 4)
 	{
 		data->map_looks.textures[i] = NULL;
+		data->map_looks.txtr_t[i] = NULL;
+		data->map_looks.txtr_colors[i] = NULL;
 		data->map_looks.direction_parsed[i] = false;
 		i++;
 	}
@@ -48,7 +50,7 @@ void	data_init(t_data *data)
 	data->map_c = NULL;
 	data->map_h = 0;
 	data->map_w = 0;
-	initialize_texture_array(data);
+	initialize_texture_arrays(data);
 	initialize_colors_arrays(data);
 	data->map_looks.player_pos_parsed = false;
 }

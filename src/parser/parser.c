@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/14 18:19:53 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/28 13:40:46 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/28 15:51:02 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	open_and_store(t_data *data, char *filename)
 		printf("%s", data->map_i[i]);
 	}
 	close(fd);
-	puts("success opening and closing the file");
 	store_map_info(data);
 	validate_colors(data);
 	player_position(data);

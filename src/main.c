@@ -117,7 +117,8 @@ void	put_lines(t_data *data, int line, double dist)
 	mlx_put_pixel(data->img, line, top, 0xff0000ff);
 	while (top < bot)
 	{
-		mlx_put_pixel(data->img, line, top, 0xff0Aff0f);
+		// printf("%x\n", data->map_looks.txtr_colors[0][0][0]);
+		mlx_put_pixel(data->img, line, top, data->map_looks.txtr_colors[0][(size_t)top][line]);
 		top++;
 	}
 	mlx_put_pixel(data->img, line, bot, 0xff0000ff);
@@ -203,6 +204,8 @@ void	loop(void *par)
 	data = par;
 	mlx_delete_image(data->mlx, data->img);
 	data->img = mlx_new_image(data->mlx, D_W, D_H);
+	if (data->img == NULL)
+		error_and_exit(data, "Memory allocation error\n", 42);
 	ray_casting(data);
 	move(data);
 	mlx_image_to_window(data->mlx, data->img, 0, 0);
@@ -218,9 +221,15 @@ void	player_init(t_data *data)
 
 void esc(mlx_key_data_t key, void *param)
 {
-	(void)param;
+	t_data	*data;
+	
+	data = (t_data *)param;
 	if(key.key == MLX_KEY_ESCAPE)
+	{
+		mlx_terminate(data->mlx);
+		free_main_struct(data);
 		exit(0);
+	}
 }
 
 int main(int argc, char *argv[])
@@ -232,8 +241,10 @@ int main(int argc, char *argv[])
 	validate_map(&data);
 	player_init(&data);
 	data.mlx = mlx_init(D_W, D_H, "cub3D", true);
+	if (data.mlx == NULL)
+		error_and_exit(&data, "Memory allocation error\n", 42);
 	mlx_loop_hook(data.mlx, loop, &data);
-	mlx_key_hook(data.mlx, esc, NULL);
+	mlx_key_hook(data.mlx, esc, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
 	free_main_struct(&data);

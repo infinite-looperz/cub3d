@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/07 17:43:02 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/28 13:12:03 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/28 17:08:39 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,23 @@ typedef enum e_color
 	BLUE
 }			t_color;
 
+// typedef struct s_vec
+// {
+// 	int
+// }				t_vec;
+
+
 typedef struct s_map_looks
 {
-	char		*textures[4];
-	int			floor_c[3];
-	int			ceiling_c[3];
-	bool		direction_parsed[4];
-	bool		f_parsed;
-	bool		c_parsed;
-	bool		player_pos_parsed;
+	char			*textures[4];
+	mlx_texture_t	*txtr_t[4];
+	int				**txtr_colors[4];
+	int				floor_c[3];
+	int				ceiling_c[3];
+	bool			direction_parsed[4];
+	bool			f_parsed;
+	bool			c_parsed;
+	bool			player_pos_parsed;
 }				t_map_looks;
 
 typedef	struct s_player

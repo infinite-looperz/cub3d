@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/02 16:59:34 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/28 12:54:56 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/28 17:47:52 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,50 @@ void	store_coordinates(t_data *data, size_t i)
 	}
 }
 
+static void	get_txtr_colors(t_data *data, t_direction direction)
+{
+	size_t	y;
+	size_t	i;
+	int		x;
+	int		pix_c;
+	
+	y = 0;
+	i = 0;
+	x = 0;
+	pix_c = 0;
+	data->map_looks.txtr_colors[direction] = ft_calloc_cub3d(data, 2048 + 1, sizeof(int*));
+	while (y < 2048)
+	{
+		data->map_looks.txtr_colors[direction][y] = ft_calloc_cub3d(data, 2048 + 1, sizeof(int));
+		while (x < 2048)
+		{
+			pix_c = (data->map_looks.txtr_t[direction]->pixels[i] << 24 \
+			| data->map_looks.txtr_t[direction]->pixels[i + 1] << 16 \
+			| data->map_looks.txtr_t[direction]->pixels[i + 2] << 8 \
+			| data->map_looks.txtr_t[direction]->pixels[i + 3]);
+			data->map_looks.txtr_colors[direction][y][x] = pix_c;
+			// printf("%x\n", data->map_looks.txtr_colors[direction][y][x]);
+			i+=4;
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+}
+
 void	get_txtr(t_data *data, t_direction direction, char **tmp, size_t i)
 {
 	tmp = ft_split_cub3d(data, data->map_i[i]);
 	data->map_looks.textures[direction] = tmp[1];
+	data->map_looks.txtr_t[direction] = mlx_load_png(tmp[1]);
+	if (data->map_looks.txtr_t[direction] == NULL)
+		error_and_exit(data, "Error loading textures\n", 52);
+	get_txtr_colors(data, direction);
 	data->map_looks.direction_parsed[direction] = true;
 	free_and_null((void **)&tmp[0]);
+	// free_and_null((void **)&tmp);
 	free(tmp);
-	tmp = NULL;
+	// tmp = NULL;
 }
 
 void	validate_colors(t_data *data)
