@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/14 19:03:29 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/14 19:11:48 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/28 12:49:42 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void	store_map_info(t_data *data)
 			break ;
 		else
 		{
+			print_stored_info(data);
 			free_2d_array((void **)tmp);
 			error_and_exit(data, "Wrong element identifier \
 or the map is not the last element\n", 6);

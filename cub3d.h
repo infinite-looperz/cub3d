@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/07 17:43:02 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/14 19:09:21 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/28 13:12:03 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ typedef struct s_data
 {
 	mlx_image_t	*img;
 	mlx_t		*mlx;
-	char		**map;
 	char		**map_i;
 	char		**map_c;
 	t_map_looks	map_looks;

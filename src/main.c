@@ -31,8 +31,8 @@ bool	angle_check(double angle, char c)
 
 bool	wall_check(t_data *data, double x, double y)
 {
-	int	x_map;
-	int	y_map;
+	size_t	x_map;
+	size_t	y_map;
 
 	if (x < 0 || y < 0)
 		return (true);
@@ -40,8 +40,8 @@ bool	wall_check(t_data *data, double x, double y)
 	y_map = y / T_SIZE;
 	if (y_map >= data->map_h || x_map >= data->map_w)
 		return (true);
-	if (data->map[y_map] && x_map <= strlen(data->map[y_map]))
-		if (data->map[y_map][x_map] == '1')
+	if (data->map_c[y_map] && x_map <= strlen(data->map_c[y_map]))
+		if (data->map_c[y_map][x_map] == '1')
 			return (true);
 	return (false);
 }
@@ -97,6 +97,7 @@ void	put_lines(t_data *data, int line, double dist)
 	double bot;
 	double top;
 	double size;
+	double fc;
 
 	dist *= cos(fix_angle(data->plyr->ray_ang - data->plyr->plyr_ang));
 	size = (T_SIZE / dist) * ((D_W / 2) / tan(data->plyr->rad_fov / 2));
@@ -106,8 +107,25 @@ void	put_lines(t_data *data, int line, double dist)
 		top = 0;
 	if (bot >= D_H)
 		bot = D_H - 1;
+	fc = 0;
+	while (fc < top)
+	{
+		mlx_put_pixel(data->img, line, fc, 0xAff0fff);
+		fc++;
+	}
+	fc = bot;
 	mlx_put_pixel(data->img, line, top, 0xff0000ff);
+	while (top < bot)
+	{
+		mlx_put_pixel(data->img, line, top, 0xff0Aff0f);
+		top++;
+	}
 	mlx_put_pixel(data->img, line, bot, 0xff0000ff);
+	while (fc < D_H - 1)
+	{
+		mlx_put_pixel(data->img, line, fc, 0xAf00AAff);
+		fc++;
+	}
 }
 
 void	ray_casting(t_data *data)
@@ -121,19 +139,19 @@ void	ray_casting(t_data *data)
 	data->plyr->ray_ang = data->plyr->plyr_ang - data->plyr->rad_fov / 2;
 	while (line < D_W)
 	{
-	x = get_inter_x(data, fix_angle(data->plyr->ray_ang));
-	y = get_inter_y(data, fix_angle(data->plyr->ray_ang));
-	data->plyr->flag = 0;
-	if (x < y)
-		dist = x;
-	else
-	{
-		dist = y;
-		data->plyr->flag = 1;
-	}
-	put_lines(data, line, dist);
-	line++;
-	data->plyr->ray_ang += data->plyr->rad_fov / D_W;
+		x = get_inter_x(data, fix_angle(data->plyr->ray_ang));
+		y = get_inter_y(data, fix_angle(data->plyr->ray_ang));
+		data->plyr->flag = 0;
+		if (x < y)
+			dist = x;
+		else
+		{
+			dist = y;
+			data->plyr->flag = 1;
+		}
+		put_lines(data, line, dist);
+		line++;
+		data->plyr->ray_ang += data->plyr->rad_fov / D_W;
 	}
 }
 
@@ -198,28 +216,9 @@ void	player_init(t_data *data)
 	data->plyr->plyr_ang = M_PI;
 }
 
-void	map(t_data *data)
-{
-	data->plyr = calloc(1, sizeof(t_player));
-	data->map = calloc(10, sizeof(char *)); // init the map
-	data->map[0] = strdup("1111111111111111111111111"); //fill the map
-	data->map[1] = strdup("1000000000000000000100001");
-	data->map[2] = strdup("1001000000000P00000000001");
-	data->map[3] = strdup("1001000000000000001000001");
-	data->map[4] = strdup("1001100000000000001000001");
-	data->map[5] = strdup("1001000100010000000100001");
-	data->map[6] = strdup("1001000000000000001000001");
-	data->map[7] = strdup("1001110000001000001000001");
-	data->map[8] = strdup("1111111111111111111111111");
-	data->map[9] = NULL;
-	data->plyr->x = 14;
-	data->plyr->y = 2;
-	data->map_h = 9;
-	data->map_w = 25;
-}
-
 void esc(mlx_key_data_t key, void *param)
 {
+	(void)param;
 	if(key.key == MLX_KEY_ESCAPE)
 		exit(0);
 }
@@ -227,18 +226,16 @@ void esc(mlx_key_data_t key, void *param)
 int main(int argc, char *argv[])
 {
 	t_data	data;
-	(void)argc;
-	(void)argv;
-	// validate_args(&data, argc, argv);
-	// open_and_store(&data, argv[1]);
-	// validate_map(&data);
-	map(&data);
+	data_init(&data);
+	validate_args(&data, argc, argv);
+	open_and_store(&data, argv[1]);
+	validate_map(&data);
 	player_init(&data);
 	data.mlx = mlx_init(D_W, D_H, "cub3D", true);
 	mlx_loop_hook(data.mlx, loop, &data);
 	mlx_key_hook(data.mlx, esc, NULL);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
-	// free_main_struct(&data);
+	free_main_struct(&data);
 	return 0;
 }
