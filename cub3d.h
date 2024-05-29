@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/07 17:43:02 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/28 17:08:39 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/05/29 19:26:48 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 #define D_W 1900
 #define D_H 1000
 #define FOV 60
-#define T_SIZE 30
+#define T_SIZE 60
 
 typedef enum e_direction
 {

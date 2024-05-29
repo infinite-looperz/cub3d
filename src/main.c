@@ -105,8 +105,12 @@ void	put_lines(t_data *data, int line, double dist)
 	bot = (D_H / 2) + (size / 2);
 	if (top < 0)
 		top = 0;
+	if (top > D_H / 2)
+		top = D_H / 2;
 	if (bot >= D_H)
 		bot = D_H - 1;
+	if (bot < D_H / 2)
+		bot = D_H / 2 + 1;
 	fc = 0;
 	while (fc < top)
 	{
@@ -177,23 +181,35 @@ void	move(t_data *data)
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
 	{
-		data->plyr->real_x += roundf(cos(data->plyr->plyr_ang));
-		data->plyr->real_y += roundf(sin(data->plyr->plyr_ang));
+		data->plyr->real_x = round(data->plyr->real_x + cos(data->plyr->plyr_ang) * 4);
+		data->plyr->real_y = round(data->plyr->real_y + sin(data->plyr->plyr_ang) * 4);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_S))
 	{
-		data->plyr->real_x -= roundf(cos(data->plyr->plyr_ang));
-		data->plyr->real_y -= roundf(sin(data->plyr->plyr_ang));
+		data->plyr->real_x = round(data->plyr->real_x - cos(data->plyr->plyr_ang) * 4);
+		data->plyr->real_y = round(data->plyr->real_y - sin(data->plyr->plyr_ang) * 4);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
 	{
-		data->plyr->real_x += roundf(sin(data->plyr->plyr_ang));
-		data->plyr->real_y -= roundf(cos(data->plyr->plyr_ang));
+		data->plyr->real_x = round(data->plyr->real_x + sin(data->plyr->plyr_ang) * 4);
+		data->plyr->real_y = round(data->plyr->real_y - cos(data->plyr->plyr_ang) * 4);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
 	{
-		data->plyr->real_x -= roundf(sin(data->plyr->plyr_ang));
-		data->plyr->real_y += roundf(cos(data->plyr->plyr_ang));
+		data->plyr->real_x = round(data->plyr->real_x - sin(data->plyr->plyr_ang) * 4);
+		data->plyr->real_y = round(data->plyr->real_y + cos(data->plyr->plyr_ang) * 4);
+	}
+}
+
+void color(mlx_image_t *img)
+{
+	int i = 0;
+	while (i < D_W*D_H*4)
+	{
+		img->pixels[i++] = 0;
+		img->pixels[i++] = 0;
+		img->pixels[i++] = 0;
+		img->pixels[i++] = 255;
 	}
 }
 
@@ -206,6 +222,7 @@ void	loop(void *par)
 	data->img = mlx_new_image(data->mlx, D_W, D_H);
 	if (data->img == NULL)
 		error_and_exit(data, "Memory allocation error\n", 42);
+	color(data->img);
 	ray_casting(data);
 	move(data);
 	mlx_image_to_window(data->mlx, data->img, 0, 0);
