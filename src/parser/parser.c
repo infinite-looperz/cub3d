@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/14 18:19:53 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/28 15:51:02 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/03 19:56:19 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,18 @@ static size_t	get_map_info_lines(t_data *data, char *filename)
 	return (i);
 }
 
+static void	player_orientation(t_data *data, char c)
+{
+	if (c == 'E')
+		data->plyr->plyr_ang = 0;
+	if (c == 'S')
+		data->plyr->plyr_ang = M_PI / 2;
+	if (c == 'W')
+		data->plyr->plyr_ang = M_PI;
+	if (c == 'N')
+		data->plyr->plyr_ang = 3 * M_PI / 2;
+}
+
 static void	player_position(t_data *data)
 {
 	size_t	x;
@@ -50,6 +62,7 @@ static void	player_position(t_data *data)
 			{
 				data->plyr->x = x;
 				data->plyr->y = y;
+				player_orientation(data, data->map_c[y][x]);
 				break ;
 			}
 			x++;

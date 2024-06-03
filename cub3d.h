@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/07 17:43:02 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/29 19:26:48 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/03 20:11:56 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 #define D_H 1000
 #define FOV 60
 #define T_SIZE 60
+#define	TEX_H 600
+#define TEX_W 600
 
 typedef enum e_direction
 {
@@ -41,12 +43,6 @@ typedef enum e_color
 	GREEN,
 	BLUE
 }			t_color;
-
-// typedef struct s_vec
-// {
-// 	int
-// }				t_vec;
-
 
 typedef struct s_map_looks
 {
@@ -101,6 +97,22 @@ void	validate_colors(t_data *data);
 /* Validation */
 void	validate_args(t_data *data, int arg_count, char **args);
 void	validate_map(t_data *data);
+
+/* Raycasting */
+void	loop(void *par);
+void	ray_casting(t_data *data);
+void	put_lines(t_data *data, int line, double dist, int direction);
+double	get_inter_y(t_data *data, double angle, int *direction);
+double	get_inter_x(t_data *data, double angle, int *direction);
+double	fix_angle(double angle);
+int		way_check(double angle, double *step, double *way, char x_y);
+bool	angle_check(double angle, char c);
+bool	wall_check(t_data *data, double x, double y);
+
+
+void	move(t_data *data);
+
+
 
 /* Free memory */
 void	free_main_struct(t_data *data);

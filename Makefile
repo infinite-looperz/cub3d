@@ -6,7 +6,7 @@
 #    By: akasiota <akasiota@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/03/15 17:23:44 by akasiota      #+#    #+#                  #
-#    Updated: 2024/05/28 18:24:35 by akasiota      ########   odam.nl          #
+#    Updated: 2024/06/03 20:27:39 by akasiota      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,22 +30,27 @@ ifeq ($(OS), Linux)
 endif
 
 SRC_DIR := ./src
-
+PARSER_DIR := $(SRC_DIR)/parser
+RAYCAST_DIR := $(SRC_DIR)/raycasting
+UTIL_DIR := $(SRC_DIR)/utilities
 OBJ_DIR := ./obj
 # SRC = $(wildcard $(SRC_DIR)/**/*.c)
 SRC :=	$(SRC_DIR)/main.c \
 		$(SRC_DIR)/map_init.c \
-		$(SRC_DIR)/parser/parser.c \
-		$(SRC_DIR)/parser/parser_utils.c \
-		$(SRC_DIR)/parser/parser_utils_2.c \
-		$(SRC_DIR)/parser/validation.c \
-		$(SRC_DIR)/parser/validate_args.c \
-		$(SRC_DIR)/utilities/free_memory.c \
-		$(SRC_DIR)/utilities/ft_calloc_cub3d.c \
-		$(SRC_DIR)/utilities/ft_split_cub3d.c \
-		$(SRC_DIR)/utilities/ft_atoi_cub3d.c \
-		$(SRC_DIR)/utilities/errors.c \
-		$(SRC_DIR)/utilities/utilities.c
+		$(PARSER_DIR)/parser.c \
+		$(PARSER_DIR)/parser_utils.c \
+		$(PARSER_DIR)/parser_utils_2.c \
+		$(PARSER_DIR)/validation.c \
+		$(PARSER_DIR)/validate_args.c \
+		$(RAYCAST_DIR)/raycasting_1.c \
+		$(RAYCAST_DIR)/raycasting_2.c \
+		$(RAYCAST_DIR)/raycasting_3.c \
+		$(UTIL_DIR)/free_memory.c \
+		$(UTIL_DIR)/ft_calloc_cub3d.c \
+		$(UTIL_DIR)/ft_split_cub3d.c \
+		$(UTIL_DIR)/ft_atoi_cub3d.c \
+		$(UTIL_DIR)/errors.c \
+		$(UTIL_DIR)/utilities.c
 # OBJ := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
 OBJ :=	$(OBJ_DIR)/main.o \
 		$(OBJ_DIR)/map_init.o \
@@ -54,6 +59,9 @@ OBJ :=	$(OBJ_DIR)/main.o \
 		$(OBJ_DIR)/parser/parser_utils_2.o \
 		$(OBJ_DIR)/parser/validation.o \
 		$(OBJ_DIR)/parser/validate_args.o \
+		$(OBJ_DIR)/raycasting/raycasting_1.o \
+		$(OBJ_DIR)/raycasting/raycasting_2.o \
+		$(OBJ_DIR)/raycasting/raycasting_3.o \
 		$(OBJ_DIR)/utilities/free_memory.o \
 		$(OBJ_DIR)/utilities/ft_calloc_cub3d.o \
 		$(OBJ_DIR)/utilities/ft_split_cub3d.o \

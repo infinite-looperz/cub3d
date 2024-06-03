@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/02 16:59:34 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/28 17:47:52 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/03 18:17:34 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ static void	get_txtr_colors(t_data *data, t_direction direction)
 	i = 0;
 	x = 0;
 	pix_c = 0;
-	data->map_looks.txtr_colors[direction] = ft_calloc_cub3d(data, 2048 + 1, sizeof(int*));
-	while (y < 2048)
+	data->map_looks.txtr_colors[direction] = ft_calloc_cub3d(data, TEX_H + 1, sizeof(int*));
+	while (y < TEX_H)
 	{
-		data->map_looks.txtr_colors[direction][y] = ft_calloc_cub3d(data, 2048 + 1, sizeof(int));
-		while (x < 2048)
+		data->map_looks.txtr_colors[direction][y] = ft_calloc_cub3d(data, TEX_W + 1, sizeof(int));
+		while (x < TEX_W)
 		{
 			pix_c = (data->map_looks.txtr_t[direction]->pixels[i] << 24 \
 			| data->map_looks.txtr_t[direction]->pixels[i + 1] << 16 \
