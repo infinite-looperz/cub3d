@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   raycasting_1.c                                     :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
+/*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/06/03 16:37:28 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/03 20:22:38 by akasiota      ########   odam.nl         */
+/*   Created: 2024/06/03 16:37:28 by seyildir      #+#    #+#                 */
+/*   Updated: 2024/06/03 20:32:45 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,6 @@ void	put_lines(t_data *data, int line, double dist, int direction)
 	step = 1.0 * TEX_H / line_height;
 	// step = TEX_H / size;
 	tex_pos = (top - D_H / 2 + line_height / 2) * step;
-	// direction = WEST;
-	// if (data->plyr->ray_ang >= 0 && data->plyr->ray_ang < M_PI / 2)
-	// 	direction = SOUTH;
-	// if (data->plyr->ray_ang >= M_PI / 2 && data->plyr->ray_ang < M_PI)
-	// 	direction = NORTH;
-	// if (data->plyr->ray_ang >= M_PI && data->plyr->ray_ang < 3 * M_PI / 2)
-	// 	direction = EAST;
-	
 	
 	while (fc < top)
 	{

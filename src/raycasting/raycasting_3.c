@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   raycasting_3.c                                     :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
+/*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/06/03 16:43:23 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/03 16:44:25 by akasiota      ########   odam.nl         */
+/*   Created: 2024/06/03 16:43:23 by seyildir      #+#    #+#                 */
+/*   Updated: 2024/06/03 20:33:01 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
