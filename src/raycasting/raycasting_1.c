@@ -6,7 +6,7 @@
 /*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/03 16:37:28 by seyildir      #+#    #+#                 */
-/*   Updated: 2024/06/03 20:32:45 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/04 03:23:47 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	put_lines(t_data *data, int line, double dist, int direction)
 	double	size;
 	
 	double	fc;
-	int		line_height;
+	double	line_height;
 	double	step;
 	double	tex_pos;
 	int		tex_y;
@@ -41,9 +41,14 @@ void	put_lines(t_data *data, int line, double dist, int direction)
 		bot = D_H / 2 + 1;
 	fc = 0;
 	line_height = bot - top;
+	// line_height = size * dist / ((D_W / 2) / tan(data->plyr->rad_fov / 2));
+	// step = 1.0 * TEX_H / T_SIZE;
 	step = 1.0 * TEX_H / line_height;
+
 	// step = TEX_H / size;
-	tex_pos = (top - D_H / 2 + line_height / 2) * step;
+	tex_pos = (top - D_H / 2) * step;
+	if (tex_pos < 0)
+		tex_pos = 0;
 	
 	while (fc < top)
 	{
@@ -55,8 +60,10 @@ void	put_lines(t_data *data, int line, double dist, int direction)
 	while (top < bot)
 	{
 		// printf("%x\n", data->map_looks.txtr_colors[0][0][0]);
-		tex_y = ((int)(tex_pos)) & (TEX_H - 1);
-		tex_x = line & (TEX_W - 1);
+		tex_y = ((int)(tex_pos)) % TEX_H;
+		tex_x = line % TEX_W;
+		// tex_x = ((int)dist * TEX_W) % TEX_W;
+
 		// printf("tex_y: %d, line: %d\n", tex_y, line);
 		color = data->map_looks.txtr_colors[direction][tex_y][tex_x];
 		mlx_put_pixel(data->img, line, top, color);
