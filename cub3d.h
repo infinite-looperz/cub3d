@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/07 17:43:02 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/04 02:18:08 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/04 20:01:50 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@
 #define D_W 1900
 #define D_H 1000
 #define FOV 60
-#define T_SIZE 60
-#define	TEX_H 600
-#define TEX_W 600
+#define T_SIZE 32
 
 typedef enum e_direction
 {
@@ -49,8 +47,8 @@ typedef struct s_map_looks
 	char			*textures[4];
 	mlx_texture_t	*txtr_t[4];
 	int				**txtr_colors[4];
-	int				floor_c[3];
-	int				ceiling_c[3];
+	int				floor_c;
+	int				ceiling_c;
 	bool			direction_parsed[4];
 	bool			f_parsed;
 	bool			c_parsed;
@@ -67,6 +65,10 @@ typedef	struct s_player
 	int		y;
 	int		real_x;
 	int		real_y;
+	double	vertical_x;
+	double	vertical_y;
+	double	horizontal_x;
+	double	horizontal_y;
 }				t_player;
 
 
@@ -92,7 +94,7 @@ void	open_and_store(t_data *data, char *filename);
 void	store_map_info(t_data *data);
 void	get_txtr(t_data *data, t_direction direction, char **tmp, size_t i);
 void	store_coordinates(t_data *data, size_t i);
-void	validate_colors(t_data *data);
+// void	validate_colors(t_data *data);
 
 /* Validation */
 void	validate_args(t_data *data, int arg_count, char **args);

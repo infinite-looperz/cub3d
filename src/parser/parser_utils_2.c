@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/02 16:59:34 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/03 18:17:34 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/04 19:56:06 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,18 @@ static void	get_txtr_colors(t_data *data, t_direction direction)
 {
 	size_t	y;
 	size_t	i;
-	int		x;
+	size_t	x;
 	int		pix_c;
 	
 	y = 0;
 	i = 0;
 	x = 0;
 	pix_c = 0;
-	data->map_looks.txtr_colors[direction] = ft_calloc_cub3d(data, TEX_H + 1, sizeof(int*));
-	while (y < TEX_H)
+	data->map_looks.txtr_colors[direction] = ft_calloc_cub3d(data, data->map_looks.txtr_t[direction]->height + 1, sizeof(int*));
+	while (y < data->map_looks.txtr_t[direction]->height)
 	{
-		data->map_looks.txtr_colors[direction][y] = ft_calloc_cub3d(data, TEX_W + 1, sizeof(int));
-		while (x < TEX_W)
+		data->map_looks.txtr_colors[direction][y] = ft_calloc_cub3d(data, data->map_looks.txtr_t[direction]->width + 1, sizeof(int));
+		while (x < data->map_looks.txtr_t[direction]->width)
 		{
 			pix_c = (data->map_looks.txtr_t[direction]->pixels[i] << 24 \
 			| data->map_looks.txtr_t[direction]->pixels[i + 1] << 16 \
@@ -100,22 +100,22 @@ void	get_txtr(t_data *data, t_direction direction, char **tmp, size_t i)
 	// tmp = NULL;
 }
 
-void	validate_colors(t_data *data)
-{
-	size_t	i;
+// void	validate_colors(t_data *data)
+// {
+// 	size_t	i;
 
-	i = 0;
-	while (i < 3)
-	{
-		if (data->map_looks.floor_c[i] < 0 \
-		|| data->map_looks.floor_c[i] > 255)
-			error_and_exit(data, "Color values out of range\n", 85);
-		if (data->map_looks.ceiling_c[i] < 0 \
-		|| data->map_looks.ceiling_c[i] > 255)
-			error_and_exit(data, "Color values out of range\n", 85);
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (i < 3)
+// 	{
+// 		if (data->map_looks.floor_c[i] < 0 \
+// 		|| data->map_looks.floor_c[i] > 255)
+// 			error_and_exit(data, "Color values out of range\n", 85);
+// 		if (data->map_looks.ceiling_c[i] < 0 \
+// 		|| data->map_looks.ceiling_c[i] > 255)
+// 			error_and_exit(data, "Color values out of range\n", 85);
+// 		i++;
+// 	}
+// }
 
 bool	check_parsing_stage(t_data *data)
 {

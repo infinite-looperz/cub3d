@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/07 16:50:33 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/28 16:54:40 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/04 19:51:12 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,8 @@ static void	initialize_colors_arrays(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < 3)
-	{
-		data->map_looks.floor_c[i] = 0;
-		data->map_looks.ceiling_c[i] = 0;
-		i++;
-	}
+	data->map_looks.floor_c = 0;
+	data->map_looks.ceiling_c = 0;
 	data->map_looks.f_parsed = false;
 	data->map_looks.c_parsed = false;
 }

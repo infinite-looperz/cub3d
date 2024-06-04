@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/07 19:55:05 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/14 17:48:40 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/04 19:56:23 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,8 @@ int	ft_atoi_cub3d(t_data *data, const char *str, char **tmp, char **tmp_2)
 		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 		r = (r * 10) + (str[i++] - '0');
+	if ((int)(r * sy) > 255 || (int)(r * sy) < 0)
+		error_and_exit(data, "Color values out of range\n", 85);
+		
 	return ((int)(r * sy));
 }

@@ -6,7 +6,7 @@
 /*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/03 16:37:28 by seyildir      #+#    #+#                 */
-/*   Updated: 2024/06/04 03:23:47 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/04 21:47:52 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ void	put_lines(t_data *data, int line, double dist, int direction)
 	double	size;
 	
 	double	fc;
-	double	line_height;
 	double	step;
-	double	tex_pos;
 	int		tex_y;
 	int		tex_x;
 	int		color;
@@ -35,45 +33,47 @@ void	put_lines(t_data *data, int line, double dist, int direction)
 		top = 0;
 	if (top > D_H / 2)
 		top = D_H / 2;
-	if (bot >= D_H)
-		bot = D_H - 1;
+	if (bot > D_H)
+		bot = D_H;
 	if (bot < D_H / 2)
 		bot = D_H / 2 + 1;
 	fc = 0;
-	line_height = bot - top;
-	// line_height = size * dist / ((D_W / 2) / tan(data->plyr->rad_fov / 2));
-	// step = 1.0 * TEX_H / T_SIZE;
-	step = 1.0 * TEX_H / line_height;
+	step = 1.0 * data->map_looks.txtr_t[direction]->height / size;
+	if (data->plyr->flag == 1)
+		tex_x = (int)fmodf((data->plyr->horizontal_x * (data->map_looks.txtr_t[direction]->width / T_SIZE)), data->map_looks.txtr_t[direction]->width);
+	else
+		tex_x = (int)fmodf((data->plyr->vertical_y * (data->map_looks.txtr_t[direction]->width / T_SIZE)), data->map_looks.txtr_t[direction]->width);
 
-	// step = TEX_H / size;
-	tex_pos = (top - D_H / 2) * step;
-	if (tex_pos < 0)
-		tex_pos = 0;
+	// float hit_point;
+	// if (data->plyr->flag == 1)
+	// 	hit_point = data->plyr->horizontal_x - floor(data->plyr->horizontal_x);
+	// else
+	// 	hit_point = data->plyr->vertical_y - floor(data->plyr->vertical_y);
+	// tex_x = (int)(hit_point * data->map_looks.txtr_t[direction]->width);
+	tex_y = (top - (D_H / 2) + (size / 2)) * step;
+	if (tex_y < 0)
+		tex_y = 0;
 	
 	while (fc < top)
 	{
-		mlx_put_pixel(data->img, line, fc, 0xAff0fff);
+		mlx_put_pixel(data->img, line, fc, data->map_looks.ceiling_c);
 		fc++;
 	}
 	fc = bot;
 	mlx_put_pixel(data->img, line, top, 0xff0000ff);
+	// printf("direction: %d, top: %f, line: %d || tex_y: %d, tex_x: %d\n", direction, top, line, tex_y, tex_x);
 	while (top < bot)
 	{
-		// printf("%x\n", data->map_looks.txtr_colors[0][0][0]);
-		tex_y = ((int)(tex_pos)) % TEX_H;
-		tex_x = line % TEX_W;
-		// tex_x = ((int)dist * TEX_W) % TEX_W;
-
-		// printf("tex_y: %d, line: %d\n", tex_y, line);
+		tex_y = tex_y % data->map_looks.txtr_t[direction]->height;
+		tex_x = tex_x % data->map_looks.txtr_t[direction]->width;
 		color = data->map_looks.txtr_colors[direction][tex_y][tex_x];
 		mlx_put_pixel(data->img, line, top, color);
 		top++;
-		tex_pos += step;
+		tex_y += step;
 	}
-	mlx_put_pixel(data->img, line, bot, 0xff0000ff);
 	while (fc < D_H - 1)
 	{
-		mlx_put_pixel(data->img, line, fc, 0xAf00AAff);
+		mlx_put_pixel(data->img, line, fc, data->map_looks.floor_c);
 		fc++;
 	}
 }
@@ -96,7 +96,7 @@ void	ray_casting(t_data *data)
 		x = get_inter_x(data, fix_angle(data->plyr->ray_ang), &direction_x);
 		y = get_inter_y(data, fix_angle(data->plyr->ray_ang), &direction_y);
 		data->plyr->flag = 0;
-		if (x < y)
+		if (x <= y)
 		{
 			dist = x;
 			put_lines(data, line, dist, direction_x);
@@ -108,7 +108,7 @@ void	ray_casting(t_data *data)
 			put_lines(data, line, dist, direction_y);
 		}
 		line++;
-		data->plyr->ray_ang += data->plyr->rad_fov / D_W;
+		data->plyr->ray_ang += (data->plyr->rad_fov / D_W);
 	}
 }
 

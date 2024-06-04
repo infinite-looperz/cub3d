@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/14 18:19:53 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/03 19:56:19 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/04 19:56:31 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	open_and_store(t_data *data, char *filename)
 	}
 	close(fd);
 	store_map_info(data);
-	validate_colors(data);
+	// validate_colors(data);
 	player_position(data);
 	// Test what is stored - delete afterwards
 	print_stored_info(data);
