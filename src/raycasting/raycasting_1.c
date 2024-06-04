@@ -6,7 +6,7 @@
 /*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/03 16:37:28 by seyildir      #+#    #+#                 */
-/*   Updated: 2024/06/04 22:50:28 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/04 22:54:59 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	put_lines(t_data *data, int line, double dist, int direction)
 	
 	double	fc;
 	double	step;
-	int		tex_y;
-	int		tex_x;
+	double		tex_y;
+	double		tex_x;
 	int		color;
 	
 
@@ -49,9 +49,9 @@ void	put_lines(t_data *data, int line, double dist, int direction)
 	fc = 0;
 	step = (double)data->map_looks.txtr_t[direction]->height / size;
 	if (data->plyr->flag == 1)
-		tex_x = (int)fmodf((data->plyr->horizontal_x * ((float)data->map_looks.txtr_t[direction]->width / T_SIZE)), data->map_looks.txtr_t[direction]->width);
+		tex_x = fmod((data->plyr->horizontal_x * ((float)data->map_looks.txtr_t[direction]->width / T_SIZE)), data->map_looks.txtr_t[direction]->width);
 	else
-		tex_x = (int)fmodf((data->plyr->vertical_y * ((float)data->map_looks.txtr_t[direction]->width / T_SIZE)), data->map_looks.txtr_t[direction]->width);
+		tex_x = fmod((data->plyr->vertical_y * ((float)data->map_looks.txtr_t[direction]->width / T_SIZE)), data->map_looks.txtr_t[direction]->width);
 
 	tex_y = (top - (D_H / 2) + (size / 2)) * step;
 	if (tex_y < 0)
@@ -63,12 +63,9 @@ void	put_lines(t_data *data, int line, double dist, int direction)
 		fc++;
 	}
 	fc = bot;
-	mlx_put_pixel(data->img, line, top, 0xff0000ff);
 	while (top < bot)
 	{
-		// tex_y = (int)tex_y % data->map_looks.txtr_t[direction]->height;
-		// tex_x = (int)tex_x % data->map_looks.txtr_t[direction]->width;
-		color = data->map_looks.txtr_colors[direction][tex_y][tex_x];
+		color = data->map_looks.txtr_colors[direction][(int)tex_y][(int)tex_x];
 		my_mlx_pixel_put(data, line, top, color);
 		top++;
 		tex_y += step;
