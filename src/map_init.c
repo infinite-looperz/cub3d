@@ -29,9 +29,6 @@ static void	initialize_texture_arrays(t_data *data)
 
 static void	initialize_colors_arrays(t_data *data)
 {
-	int	i;
-
-	i = 0;
 	data->map_looks.floor_c = 0;
 	data->map_looks.ceiling_c = 0;
 	data->map_looks.f_parsed = false;

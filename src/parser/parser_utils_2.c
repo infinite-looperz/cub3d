@@ -107,10 +107,10 @@ void	get_txtr(t_data *data, t_direction direction, char **tmp, size_t i)
 // 	i = 0;
 // 	while (i < 3)
 // 	{
-// 		if (data->map_looks.floor_c[i] < 0 \
+// 		if (data->map_looks.floor_c[i] < 0 
 // 		|| data->map_looks.floor_c[i] > 255)
 // 			error_and_exit(data, "Color values out of range\n", 85);
-// 		if (data->map_looks.ceiling_c[i] < 0 \
+// 		if (data->map_looks.ceiling_c[i] < 0 
 // 		|| data->map_looks.ceiling_c[i] > 255)
 // 			error_and_exit(data, "Color values out of range\n", 85);
 // 		i++;
