@@ -105,4 +105,8 @@ push: fclean
 	git commit -m "update"
 	git push
 
+commit: fclean
+	git add .
+	git commit -m "update"
+
 .PHONY: fclean clean re all push
