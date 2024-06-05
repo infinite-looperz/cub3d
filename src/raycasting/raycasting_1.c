@@ -92,7 +92,7 @@ void	ray_casting(t_data *data)
 	line = 0;
 	direction_x = 0;
 	direction_y = 0;
-	data->plyr->ray_ang = fix_angle(data->plyr->plyr_ang - data->plyr->rad_fov / 2);
+	data->plyr->ray_ang = data->plyr->plyr_ang - data->plyr->rad_fov / 2;
 	while (line < D_W)
 	{
 		x = get_inter_x(data, data->plyr->ray_ang, &direction_x);
@@ -110,7 +110,7 @@ void	ray_casting(t_data *data)
 			put_lines(data, line, dist, direction_y);
 		}
 		line++;
-		data->plyr->ray_ang += (data->plyr->rad_fov / D_W);
+		data->plyr->ray_ang = fix_angle(data->plyr->ray_ang + data->plyr->rad_fov / D_W);
 	}
 }
 

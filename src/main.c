@@ -1,22 +1,21 @@
 #include <cub3d.h>
 
-#define PLAYER_SPD 4
-#define ROTATE_SPD 0.03
+#define PLYR_SPD 4
+#define ROT_SPD 2 * M_PI / 180
 
-void	move(t_data *data)
+void move(t_data *data)
 {
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 	{
-		data->plyr->plyr_ang += ROTATE_SPD;
+		data->plyr->plyr_ang += ROT_SPD;
 		if (data->plyr->plyr_ang > 2 * M_PI)
 		{
 			data->plyr->plyr_ang -= 2 * M_PI;
 		}
-		
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
 	{
-		data->plyr->plyr_ang -= ROTATE_SPD;
+		data->plyr->plyr_ang -= ROT_SPD;
 		if (data->plyr->plyr_ang < 0)
 		{
 			data->plyr->plyr_ang += 2 * M_PI;
@@ -24,23 +23,23 @@ void	move(t_data *data)
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
 	{
-		data->plyr->real_x = round(data->plyr->real_x + cos(data->plyr->plyr_ang) * PLAYER_SPD);
-		data->plyr->real_y = round(data->plyr->real_y + sin(data->plyr->plyr_ang) * PLAYER_SPD);
+		data->plyr->real_x = round(data->plyr->real_x + cos(data->plyr->plyr_ang) * PLYR_SPD);
+		data->plyr->real_y = round(data->plyr->real_y + sin(data->plyr->plyr_ang) * PLYR_SPD);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_S))
 	{
-		data->plyr->real_x = round(data->plyr->real_x - cos(data->plyr->plyr_ang) * PLAYER_SPD);
-		data->plyr->real_y = round(data->plyr->real_y - sin(data->plyr->plyr_ang) * PLAYER_SPD);
+		data->plyr->real_x = round(data->plyr->real_x - cos(data->plyr->plyr_ang) * PLYR_SPD);
+		data->plyr->real_y = round(data->plyr->real_y - sin(data->plyr->plyr_ang) * PLYR_SPD);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
 	{
-		data->plyr->real_x = round(data->plyr->real_x + sin(data->plyr->plyr_ang) * PLAYER_SPD);
-		data->plyr->real_y = round(data->plyr->real_y - cos(data->plyr->plyr_ang) * PLAYER_SPD);
+		data->plyr->real_x = round(data->plyr->real_x + sin(data->plyr->plyr_ang) * PLYR_SPD);
+		data->plyr->real_y = round(data->plyr->real_y - cos(data->plyr->plyr_ang) * PLYR_SPD);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
 	{
-		data->plyr->real_x = round(data->plyr->real_x - sin(data->plyr->plyr_ang) * PLAYER_SPD);
-		data->plyr->real_y = round(data->plyr->real_y + cos(data->plyr->plyr_ang) * PLAYER_SPD);
+		data->plyr->real_x = round(data->plyr->real_x - sin(data->plyr->plyr_ang) * PLYR_SPD);
+		data->plyr->real_y = round(data->plyr->real_y + cos(data->plyr->plyr_ang) * PLYR_SPD);
 	}
 }
 
