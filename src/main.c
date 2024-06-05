@@ -41,18 +41,6 @@ void	move(t_data *data)
 	}
 }
 
-// void color(mlx_image_t *img)
-// {
-// 	int i = 0;
-// 	while (i < D_W*D_H*4)
-// 	{
-// 		img->pixels[i++] = 0;
-// 		img->pixels[i++] = 0;
-// 		img->pixels[i++] = 0;
-// 		img->pixels[i++] = 255;
-// 	}
-// }
-
 void	player_init(t_data *data)
 {
 	data->plyr->real_x = data->plyr->x * T_SIZE + T_SIZE / 2;

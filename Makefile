@@ -100,4 +100,9 @@ clean:
 
 re: fclean all
 
-.PHONY: fclean clean re all
+push: fclean
+	git add .
+	git commit -m "update"
+	git push
+
+.PHONY: fclean clean re all push

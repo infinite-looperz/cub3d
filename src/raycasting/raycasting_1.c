@@ -12,17 +12,23 @@
 
 #include "cub3d.h"
 
-static void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+static void	pixel_put(t_data *data, int x, int y, int color)
+{
+	if (x >= 0 && x < D_W && y >= 0 && y < D_H)
+		mlx_put_pixel(data->img, x, y, color);
+}
+
+uint32_t	get_color(t_data *data, int direction, int x, int y)
 {
 	if (x < 0)
-		return ;
-	else if (x >= D_W)
-		return ;
+		x = 0;
+	if (x >= (int)data->map_looks.txtr_t[direction]->width)
+		x = data->map_looks.txtr_t[direction]->width - 1;
 	if (y < 0)
-		return ;
-	else if (y >= D_H)
-		return ;
-	mlx_put_pixel(data->img, x, y, color);
+		y = 0;
+	if (y >= (int)data->map_looks.txtr_t[direction]->height)
+		y = data->map_looks.txtr_t[direction]->height - 1;
+	return(data->map_looks.txtr_colors[direction][y][x]);
 }
 
 void	put_lines(t_data *data, int line, double dist, int direction)
@@ -30,12 +36,10 @@ void	put_lines(t_data *data, int line, double dist, int direction)
 	double	bot;
 	double	top;
 	double	size;
-	
 	double	fc;
 	double	step;
 	double		tex_y;
 	double		tex_x;
-	int		color;
 	
 
 	dist *= cos(fix_angle(data->plyr->ray_ang - data->plyr->plyr_ang));
@@ -65,8 +69,7 @@ void	put_lines(t_data *data, int line, double dist, int direction)
 	fc = bot;
 	while (top < bot)
 	{
-		color = data->map_looks.txtr_colors[direction][(int)tex_y][(int)tex_x];
-		my_mlx_pixel_put(data, line, top, color);
+		pixel_put(data, line, top, get_color(data, direction, (int)tex_x, (int)tex_y));
 		top++;
 		tex_y += step;
 	}
