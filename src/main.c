@@ -1,6 +1,6 @@
 #include <cub3d.h>
 
-#define PLYR_SPD 3
+#define PLYR_SPD 4
 #define ROT_SPD 0.03
 
 void	move_check(t_data *data, int x, int y)
@@ -10,6 +10,8 @@ void	move_check(t_data *data, int x, int y)
 
 	map_x = x / T_SIZE;
 	map_y = y / T_SIZE;
+	if ((size_t)map_y >= data->map_h || (size_t)map_x >= data->map_w)
+		return ;
 	if (data->map_c[map_y][map_x] == '1')
 		return ;
 	data->plyr->real_x = x;

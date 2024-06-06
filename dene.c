@@ -23,7 +23,7 @@
 # define TILE_SIZE 30 // tile size
 # define FOV 60 // field of view
 # define ROTATION_SPEED 0.05 // rotation speed
-# define PLAYER_SPEED 4 // player speed
+# define PLAYER_SPEED 3 // player speed
 
 typedef struct s_player //the player structure
 {
@@ -453,7 +453,7 @@ t_data *init_argumet() // init the data structure
  dt->map2d[1] = strdup("1000000000000000000100001");
  dt->map2d[2] = strdup("1001000000000P00000000001");
  dt->map2d[3] = strdup("1001000000000000001000001");
- dt->map2d[4] = strdup("1001000000000000001000001");
+ dt->map2d[4] = strdup("1001000001000000001000001");
  dt->map2d[5] = strdup("1001000000100000001000001");
  dt->map2d[6] = strdup("1001000000000000001000001");
  dt->map2d[7] = strdup("1001000000001000001000001");
