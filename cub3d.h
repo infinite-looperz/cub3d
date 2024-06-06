@@ -25,7 +25,7 @@
 #define D_W 1900
 #define D_H 1000
 #define FOV 60
-#define T_SIZE 32
+#define T_SIZE 30
 
 typedef enum e_direction
 {

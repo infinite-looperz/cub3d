@@ -50,6 +50,11 @@ void	put_lines(t_data *data, int line, double dist, int direction)
 		top = 0;
 	if (bot > D_H)
 		bot = D_H;
+	if (top > D_H / 2) // fow protection
+		top = D_H / 2;
+	if (bot < 0) // fov protection
+		bot = D_H / 2 + 1;
+	
 	fc = 0;
 	step = (double)data->map_looks.txtr_t[direction]->height / size;
 	if (data->plyr->flag == 1)
