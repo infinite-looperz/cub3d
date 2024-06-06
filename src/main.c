@@ -1,7 +1,7 @@
 #include <cub3d.h>
 
 #define PLYR_SPD 4
-#define ROT_SPD 0.03
+#define ROT_SPD 2 * M_PI / 180
 
 void	move_check(t_data *data, int x, int y)
 {
