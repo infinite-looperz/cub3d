@@ -128,8 +128,9 @@ void	loop(void *par)
 	data->img = mlx_new_image(data->mlx, D_W, D_H);
 	if (data->img == NULL)
 		error_and_exit(data, "Memory allocation error\n", 42);
-	// color(data->img);
 	ray_casting(data);
+	if (mlx_is_key_down(data->mlx, mlx_key)
+	
 	move(data);
 	mlx_image_to_window(data->mlx, data->img, 0, 0);
 }
