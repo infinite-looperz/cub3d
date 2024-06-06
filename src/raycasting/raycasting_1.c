@@ -38,8 +38,8 @@ void	put_lines(t_data *data, int line, double dist, int direction)
 	double	size;
 	double	fc;
 	double	step;
-	double		tex_y;
-	double		tex_x;
+	double	tex_y;
+	double	tex_x;
 	
 
 	dist *= cos(fix_angle(data->plyr->ray_ang - data->plyr->plyr_ang));

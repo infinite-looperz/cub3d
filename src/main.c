@@ -5,19 +5,23 @@
 
 void	move_check(t_data *data, int x, int y)
 {
-	int map_x;
-	int map_y;
+	int tar_x;
+	int tar_y;
+	int cur_x;
+	int cur_y;
 
-	map_x = x / T_SIZE;
-	map_y = y / T_SIZE;
-	if (!data->map_c[map_y])
+	tar_x = x / T_SIZE;
+	tar_y = y / T_SIZE;
+	cur_x = data->plyr->real_x / T_SIZE;
+	cur_y = data->plyr->real_y / T_SIZE;
+	if (!data->map_c[tar_y][cur_x])
 		return ;
-	if (!data->map_c[map_y][map_x])
+	if (!data->map_c[cur_y][tar_x])
 		return ;
-	if (data->map_c[map_y][map_x] == '1')
-		return ;
-	data->plyr->real_x = x;
-	data->plyr->real_y = y;
+	if (data->map_c[tar_y][cur_x] != '1')
+		data->plyr->real_y = y;
+	if (data->map_c[cur_y][tar_x] != '1')
+		data->plyr->real_x = x;
 }
 
 

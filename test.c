@@ -1,10 +1,10 @@
 #include <stdio.h>
-#include <math.h>
+#include <string.h>
+#include <stdlib.h>
 
-int main(int argc, char const *argv[])
-{
-	double x = 1;
-	fmod(x, M_PI * 2);
-	printf("%f\n", fmod(x, M_PI * 2));
-	return 0;
+int main() {
+    char *str = malloc(3);
+    str[5] = 'a';
+	printf("%c\n", str[5]);
+    return 0;
 }
