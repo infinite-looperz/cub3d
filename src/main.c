@@ -90,6 +90,7 @@ void esc(mlx_key_data_t key, void *param)
 int main(int argc, char *argv[])
 {
 	t_data	data;
+
 	data_init(&data);
 	validate_args(&data, argc, argv);
 	open_and_store(&data, argv[1]);
