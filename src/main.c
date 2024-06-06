@@ -46,23 +46,23 @@ void move(t_data *data)
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
 	{
-		x = round(data->plyr->real_x + cos(data->plyr->plyr_ang) * PLYR_SPD);
-		y = round(data->plyr->real_y + sin(data->plyr->plyr_ang) * PLYR_SPD);
+		x += round(cos(data->plyr->plyr_ang) * PLYR_SPD);
+		y += round(sin(data->plyr->plyr_ang) * PLYR_SPD);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_S))
 	{
-		x = round(data->plyr->real_x - cos(data->plyr->plyr_ang) * PLYR_SPD);
-		y = round(data->plyr->real_y - sin(data->plyr->plyr_ang) * PLYR_SPD);
+		x -= round(cos(data->plyr->plyr_ang) * PLYR_SPD);
+		y -= round(sin(data->plyr->plyr_ang) * PLYR_SPD);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
 	{
-		x = round(data->plyr->real_x + sin(data->plyr->plyr_ang) * PLYR_SPD);
-		y = round(data->plyr->real_y - cos(data->plyr->plyr_ang) * PLYR_SPD);
+		x += round(sin(data->plyr->plyr_ang) * PLYR_SPD);
+		y -= round(cos(data->plyr->plyr_ang) * PLYR_SPD);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
 	{
-		x = round(data->plyr->real_x - sin(data->plyr->plyr_ang) * PLYR_SPD);
-		y = round(data->plyr->real_y + cos(data->plyr->plyr_ang) * PLYR_SPD);
+		x -= round(sin(data->plyr->plyr_ang) * PLYR_SPD);
+		y += round(cos(data->plyr->plyr_ang) * PLYR_SPD);
 	}
 	move_check(data, x, y);
 }
