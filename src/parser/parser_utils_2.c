@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/02 16:59:34 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/09 15:37:30 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/09 20:10:11 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,20 @@ static void	map_dimensions(t_data *data, size_t i)
 	}
 }
 
+static void	tile_assignment(t_data *data, size_t i, size_t y, size_t x)
+{
+	if (data->map_i[i][x] != '\n' && data->map_i[i][x] != ' ')
+	{
+		if (data->map_i[i][x] != '1' && data->map_i[i][x] != '0' \
+		&& data->map_i[i][x] != 'N' && data->map_i[i][x] != 'S' \
+		&& data->map_i[i][x] != 'W' && data->map_i[i][x] != 'E')
+			error_and_exit(data, "Unidentified tiles in map\n", 10);
+		data->map_c[y][x] = data->map_i[i][x];
+	}
+	else
+		data->map_c[y][x] = 'V';
+}
+
 void	store_coordinates(t_data *data, size_t i)
 {
 	size_t	y;
@@ -42,10 +56,7 @@ void	store_coordinates(t_data *data, size_t i)
 		data->map_c[y] = ft_calloc_cub3d(data, data->map_w + 1, sizeof(char));
 		while (x < data->map_w && data->map_i[i][x] != '\0')
 		{
-			if (data->map_i[i][x] != '\n' && data->map_i[i][x] != ' ')
-				data->map_c[y][x] = data->map_i[i][x];
-			else
-				data->map_c[y][x] = 'V';
+			tile_assignment(data, i, y, x);
 			x++;
 		}
 		x = 0;
