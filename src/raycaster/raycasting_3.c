@@ -6,7 +6,7 @@
 /*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/03 16:43:23 by seyildir      #+#    #+#                 */
-/*   Updated: 2024/06/03 20:33:01 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/09 16:22:11 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ double	fix_angle(double angle)
 
 int	way_check(double angle, double *step, double *way, char x_y)
 {
-	if((x_y == 'x' && (angle < M_PI / 2 || angle > 3 * M_PI / 2))
+	if ((x_y == 'x' && (angle < M_PI / 2 || angle > 3 * M_PI / 2))
 		|| (x_y == 'y' && (angle > 0 && angle < M_PI)))
 	{
 		*way += T_SIZE;

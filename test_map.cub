@@ -5,7 +5,7 @@ EA  ./textures/Wheat_Field.png
 
 SO  ./textures/SO.png
 
-C          255,30,0
+C         180,255,255
 
 
 F 220,100,-0

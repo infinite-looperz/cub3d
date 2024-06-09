@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_atoi_cub3d.c                                    :+:    :+:            */
+/*   cub3d_atoi.c                                    	:+:    :+:            */
 /*                                                     +:+                    */
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/07 19:55:05 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/04 19:56:23 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/09 18:07:30 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int	ft_atoi_cub3d(t_data *data, const char *str, char **tmp, char **tmp_2)
+uint32_t	cub3d_atoi(t_data *data, const char *str, char **tmp, char **tmp_2)
 {
 	short int	sy;
 	int			i;
-	long		r;
+	long long	r;
 
 	r = 0;
 	i = 0;
@@ -36,8 +36,7 @@ int	ft_atoi_cub3d(t_data *data, const char *str, char **tmp, char **tmp_2)
 		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 		r = (r * 10) + (str[i++] - '0');
-	if ((int)(r * sy) > 255 || (int)(r * sy) < 0)
+	if ((long long)(r * sy) > 255 || (long long)(r * sy) < 0)
 		error_and_exit(data, "Color values out of range\n", 85);
-		
-	return ((int)(r * sy));
+	return ((uint32_t)(r * sy));
 }

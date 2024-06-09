@@ -6,11 +6,22 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/14 18:19:53 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/04 19:56:31 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/09 18:11:29 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+bool	check_parsing_stage(t_data *data)
+{
+	if (data->map_looks.direction_parsed[NORTH] == true \
+	&& data->map_looks.direction_parsed[SOUTH] == true \
+	&& data->map_looks.direction_parsed[WEST] == true \
+	&& data->map_looks.direction_parsed[EAST] == true \
+	&& data->map_looks.f_parsed == true && data->map_looks.c_parsed == true)
+		return (true);
+	return (false);
+}
 
 static size_t	get_map_info_lines(t_data *data, char *filename)
 {
@@ -92,8 +103,5 @@ void	open_and_store(t_data *data, char *filename)
 	}
 	close(fd);
 	store_map_info(data);
-	// validate_colors(data);
 	player_position(data);
-	// Test what is stored - delete afterwards
-	print_stored_info(data);
 }

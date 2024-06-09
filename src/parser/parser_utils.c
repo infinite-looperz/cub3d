@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/14 19:03:29 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/04 19:51:49 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/09 18:11:21 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ static bool	parse_f_colors(t_data *data, char **tmp, size_t i)
 		tmp = ft_split_cub3d(data, data->map_i[i]);
 		tmp_2 = ft_split(tmp[1], ',');
 		data->map_looks.floor_c = \
-		ft_atoi_cub3d(data, tmp_2[RED], tmp, tmp_2) << 24 \
-		| ft_atoi_cub3d(data, tmp_2[GREEN], tmp, tmp_2) << 16 \
-		| ft_atoi_cub3d(data, tmp_2[BLUE], tmp, tmp_2) << 8 | 0xFF;
+		cub3d_atoi(data, tmp_2[RED], tmp, tmp_2) << 24 \
+		| cub3d_atoi(data, tmp_2[GREEN], tmp, tmp_2) << 16 \
+		| cub3d_atoi(data, tmp_2[BLUE], tmp, tmp_2) << 8 | 0xFF;
 		data->map_looks.f_parsed = true;
 		free_2d_array((void **)tmp);
 		free_2d_array((void **)tmp_2);
@@ -65,9 +65,9 @@ static bool	parse_c_colors(t_data *data, char **tmp, size_t i)
 		tmp = ft_split_cub3d(data, data->map_i[i]);
 		tmp_2 = ft_split(tmp[1], ',');
 		data->map_looks.ceiling_c = \
-		ft_atoi_cub3d(data, tmp_2[RED], tmp, tmp_2) << 24 \
-		| ft_atoi_cub3d(data, tmp_2[GREEN], tmp, tmp_2) << 16 \
-		| ft_atoi_cub3d(data, tmp_2[BLUE], tmp, tmp_2) << 8 | 0xFF;
+		cub3d_atoi(data, tmp_2[RED], tmp, tmp_2) << 24 \
+		| cub3d_atoi(data, tmp_2[GREEN], tmp, tmp_2) << 16 \
+		| cub3d_atoi(data, tmp_2[BLUE], tmp, tmp_2) << 8 | 0xFF;
 		data->map_looks.c_parsed = true;
 		free_2d_array((void **)tmp);
 		free_2d_array((void **)tmp_2);
@@ -108,7 +108,6 @@ void	store_map_info(t_data *data)
 			break ;
 		else
 		{
-			print_stored_info(data);
 			free_2d_array((void **)tmp);
 			error_and_exit(data, "Wrong element identifier \
 or the map is not the last element\n", 6);

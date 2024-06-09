@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/07 16:50:33 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/04 19:51:12 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/09 17:55:20 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,13 @@ void	data_init(t_data *data)
 	data->map_c = NULL;
 	data->map_h = 0;
 	data->map_w = 0;
+	data->direction_x = 0;
+	data->direction_y = 0;
+	data->ray.fc = 0;
+	data->ray.tex_x = 0;
+	data->ray.tex_y = 0;
+	data->ray.top = 0;
+	data->ray.bot = 0;
 	initialize_texture_arrays(data);
 	initialize_colors_arrays(data);
 	data->map_looks.player_pos_parsed = false;

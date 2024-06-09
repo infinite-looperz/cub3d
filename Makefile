@@ -6,7 +6,7 @@
 #    By: akasiota <akasiota@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/03/15 17:23:44 by akasiota      #+#    #+#                  #
-#    Updated: 2024/06/04 19:28:38 by akasiota      ########   odam.nl          #
+#    Updated: 2024/06/09 18:08:22 by akasiota      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ endif
 
 SRC_DIR := ./src
 PARSER_DIR := $(SRC_DIR)/parser
-RAYCAST_DIR := $(SRC_DIR)/raycasting
+RAYCAST_DIR := $(SRC_DIR)/raycaster
 UTIL_DIR := $(SRC_DIR)/utilities
 OBJ_DIR := ./obj
 # SRC = $(wildcard $(SRC_DIR)/**/*.c)
@@ -45,10 +45,12 @@ SRC :=	$(SRC_DIR)/main.c \
 		$(RAYCAST_DIR)/raycasting_1.c \
 		$(RAYCAST_DIR)/raycasting_2.c \
 		$(RAYCAST_DIR)/raycasting_3.c \
+		$(RAYCAST_DIR)/raycasting_4.c \
+		$(RAYCAST_DIR)/movement.c \
 		$(UTIL_DIR)/free_memory.c \
 		$(UTIL_DIR)/ft_calloc_cub3d.c \
 		$(UTIL_DIR)/ft_split_cub3d.c \
-		$(UTIL_DIR)/ft_atoi_cub3d.c \
+		$(UTIL_DIR)/cub3d_atoi.c \
 		$(UTIL_DIR)/errors.c \
 		$(UTIL_DIR)/utilities.c
 # OBJ := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
@@ -59,13 +61,15 @@ OBJ :=	$(OBJ_DIR)/main.o \
 		$(OBJ_DIR)/parser/parser_utils_2.o \
 		$(OBJ_DIR)/parser/validation.o \
 		$(OBJ_DIR)/parser/validate_args.o \
-		$(OBJ_DIR)/raycasting/raycasting_1.o \
-		$(OBJ_DIR)/raycasting/raycasting_2.o \
-		$(OBJ_DIR)/raycasting/raycasting_3.o \
+		$(OBJ_DIR)/raycaster/raycasting_1.o \
+		$(OBJ_DIR)/raycaster/raycasting_2.o \
+		$(OBJ_DIR)/raycaster/raycasting_3.o \
+		$(OBJ_DIR)/raycaster/raycasting_4.o \
+		$(OBJ_DIR)/raycaster/movement.o \
 		$(OBJ_DIR)/utilities/free_memory.o \
 		$(OBJ_DIR)/utilities/ft_calloc_cub3d.o \
 		$(OBJ_DIR)/utilities/ft_split_cub3d.o \
-		$(OBJ_DIR)/utilities/ft_atoi_cub3d.o \
+		$(OBJ_DIR)/utilities/cub3d_atoi.o \
 		$(OBJ_DIR)/utilities/errors.o \
 		$(OBJ_DIR)/utilities/utilities.o
 
@@ -100,13 +104,13 @@ clean:
 
 re: fclean all
 
-push: fclean
-	git add .
-	git commit -m "update"
-	git push
+# push: fclean
+# 	git add .
+# 	git commit -m "update"
+# 	git push
 
-commit: fclean
-	git add .
-	git commit -m "update"
+# commit: fclean
+# 	git add .
+# 	git commit -m "update"
 
 .PHONY: fclean clean re all push
