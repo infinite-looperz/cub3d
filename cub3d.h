@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/07 17:43:02 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/09 19:40:38 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/09 20:20:37 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct s_map_looks
 	bool			player_pos_parsed;
 }				t_map_looks;
 
-typedef	struct s_player
+typedef struct s_player
 {
 	double	rad_fov;
 	double	plyr_ang;
@@ -82,7 +82,6 @@ typedef struct s_raycast_c
 	double	fc;
 }			t_raycast_c;
 
-
 typedef struct s_data
 {
 	mlx_image_t	*img;
@@ -99,46 +98,45 @@ typedef struct s_data
 }				t_data;
 
 /* Initialization */
-void	data_init(t_data *data);
+void		data_init(t_data *data);
 
 /* Parsing */
-void	open_and_store(t_data *data, char *filename);
+void		open_and_store(t_data *data, char *filename);
 
 /* Parsing utils */
-void	store_map_info(t_data *data);
-void	get_txtr(t_data *data, t_direction direction, char **tmp, size_t i);
-void	store_coordinates(t_data *data, size_t i);
-bool	check_parsing_stage(t_data *data);
+void		store_map_info(t_data *data);
+void		get_txtr(t_data *data, t_direction direction, char **tmp, size_t i);
+void		store_coordinates(t_data *data, size_t i);
+bool		check_parsing_stage(t_data *data);
 
 /* Validation */
-void	validate_args(t_data *data, int arg_count, char **args);
-void	validate_map(t_data *data);
+void		validate_args(t_data *data, int arg_count, char **args);
+void		validate_map(t_data *data);
 
 /* Raycasting */
-void	loop(void *par);
-void	ray_casting(t_data *data);
-void	put_lines(t_data *data, int line, double dist, int direction);
-double	get_inter_y(t_data *data, double angle, int *direction);
-double	get_inter_x(t_data *data, double angle, int *direction);
-double	fix_angle(double angle);
-int		way_check(double angle, double *step, double *way, char x_y);
-bool	angle_check(double angle, char c);
-bool	wall_check(t_data *data, double x, double y);
+void		loop(void *par);
+void		ray_casting(t_data *data);
+void		put_lines(t_data *data, int line, double dist, int direction);
+double		get_inter_y(t_data *data, double angle, int *direction);
+double		get_inter_x(t_data *data, double angle, int *direction);
+double		fix_angle(double angle);
+int			way_check(double angle, double *step, double *way, char x_y);
+bool		angle_check(double angle, char c);
+bool		wall_check(t_data *data, double x, double y);
 
 /* Movement */
-void	player_init(t_data *data);
-void	move(t_data *data);
+void		player_init(t_data *data);
+void		move(t_data *data);
 
 /* Free memory */
-void	free_main_struct(t_data *data);
-void	free_2d_array(void **array);
-void	free_and_null(void **p);
+void		free_main_struct(t_data *data);
+void		free_2d_array(void **array);
+void		free_and_null(void **p);
 
 /* Errors */
-void	error_and_exit(t_data *data, char *s, int ierr);
+void		error_and_exit(t_data *data, char *s, int ierr);
 
 /* Utilities */
-// void		print_stored_info(t_data *data);
 bool		is_whitespace(char c);
 void		*ft_calloc_cub3d(t_data *data, size_t count, size_t size);
 char		**ft_split_cub3d(t_data *data, char const *s);
