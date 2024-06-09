@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/07 17:43:02 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/09 18:11:11 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/09 19:40:38 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	open_and_store(t_data *data, char *filename);
 void	store_map_info(t_data *data);
 void	get_txtr(t_data *data, t_direction direction, char **tmp, size_t i);
 void	store_coordinates(t_data *data, size_t i);
-// void	validate_colors(t_data *data);
+bool	check_parsing_stage(t_data *data);
 
 /* Validation */
 void	validate_args(t_data *data, int arg_count, char **args);
@@ -143,6 +143,5 @@ bool		is_whitespace(char c);
 void		*ft_calloc_cub3d(t_data *data, size_t count, size_t size);
 char		**ft_split_cub3d(t_data *data, char const *s);
 uint32_t	cub3d_atoi(t_data *data, const char *str, char **tmp, char **tmp_2);
-bool		check_parsing_stage(t_data *data);
 
 #endif

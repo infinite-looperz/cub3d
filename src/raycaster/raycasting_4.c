@@ -6,11 +6,11 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/09 18:02:05 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/09 18:02:25 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/09 19:36:25 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include <cub3d.h>
 
 static void	pixel_put(t_data *data, int x, int y, int color)
 {
@@ -53,6 +53,7 @@ static void	put_lines_while(t_data *data, int line, int direction, double step)
 		mlx_put_pixel(data->img, line, data->ray.fc, data->map_looks.floor_c);
 		data->ray.fc++;
 	}
+	data->ray.fc = 0;
 }
 
 static void	put_lines_init_top_bot(t_data *data, double size)

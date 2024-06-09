@@ -6,11 +6,11 @@
 /*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/03 16:41:52 by seyildir      #+#    #+#                 */
-/*   Updated: 2024/06/09 16:28:11 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/09 19:24:40 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include <cub3d.h>
 
 double	get_inter_x(t_data *data, double angle, int *direction)
 {

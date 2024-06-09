@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/14 18:19:53 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/09 18:11:29 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/09 19:36:40 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ void	open_and_store(t_data *data, char *filename)
 	{
 		i++;
 		data->map_i[i] = get_next_line(fd);
-		printf("%s", data->map_i[i]);
 	}
 	close(fd);
 	store_map_info(data);

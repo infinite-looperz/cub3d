@@ -6,11 +6,11 @@
 /*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/03 16:43:23 by seyildir      #+#    #+#                 */
-/*   Updated: 2024/06/09 16:22:11 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/09 19:24:45 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include <cub3d.h>
 
 double	fix_angle(double angle)
 {

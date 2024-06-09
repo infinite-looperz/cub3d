@@ -6,13 +6,13 @@
 /*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/09 15:55:00 by seyildir      #+#    #+#                 */
-/*   Updated: 2024/06/09 16:12:38 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/09 19:38:05 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	esc(mlx_key_data_t key, void *param)
+static void	esc(mlx_key_data_t key, void *param)
 {
 	t_data	*data;
 
@@ -36,7 +36,7 @@ int	main(int argc, char *argv[])
 	player_init(&data);
 	data.mlx = mlx_init(D_W, D_H, "cub3D", true);
 	if (data.mlx == NULL)
-		error_and_exit(&data, "Memory allocation error\n", 42);
+		error_and_exit(&data, "Malloc error\n", 42);
 	mlx_loop_hook(data.mlx, loop, &data);
 	mlx_key_hook(data.mlx, esc, &data);
 	mlx_loop(data.mlx);

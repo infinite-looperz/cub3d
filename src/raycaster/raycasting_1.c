@@ -6,11 +6,11 @@
 /*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/03 16:37:28 by seyildir      #+#    #+#                 */
-/*   Updated: 2024/06/09 18:02:22 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/09 19:24:36 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include <cub3d.h>
 
 static void	ray_casting_while(t_data *data, double x, double y, int line)
 {
@@ -52,7 +52,7 @@ void	loop(void *par)
 	mlx_delete_image(data->mlx, data->img);
 	data->img = mlx_new_image(data->mlx, D_W, D_H);
 	if (data->img == NULL)
-		error_and_exit(data, "Memory allocation error\n", 42);
+		error_and_exit(data, "Malloc error\n", 42);
 	ray_casting(data);
 	move(data);
 	mlx_image_to_window(data->mlx, data->img, 0, 0);

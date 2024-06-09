@@ -6,11 +6,11 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/09 16:11:53 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/09 16:20:41 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/09 19:24:26 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include <cub3d.h>
 
 static void	move_check(t_data *data, int x, int y)
 {

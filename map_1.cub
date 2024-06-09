@@ -3,8 +3,9 @@ SO textures/Wheat_Field.png
 WE textures/the_starry_night.png
 EA textures/the_tower_of_babel.png
 
-F 220,100,0
 C 225,30,0
+F 220,100,0
+
         1111111111111111111111111
         1000000000110000000000001
         1011000001110000000000001
