@@ -6,7 +6,7 @@
 /*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/03 16:37:28 by seyildir      #+#    #+#                 */
-/*   Updated: 2024/06/09 19:24:36 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/10 18:59:45 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,9 @@ void	loop(void *par)
 		error_and_exit(data, "Malloc error\n", 42);
 	ray_casting(data);
 	move(data);
-	mlx_image_to_window(data->mlx, data->img, 0, 0);
+	if (mlx_image_to_window(data->mlx, data->img, 0, 0) == -1)
+	{
+		mlx_terminate(data->mlx);
+		error_and_exit(data, "Couldn't put image to window\n", 73);
+	}
 }
