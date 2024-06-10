@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/02 16:59:34 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/09 20:10:11 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/10 03:27:43 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	store_coordinates(t_data *data, size_t i)
 	}
 }
 
-static void	get_txtr_colors(t_data *data, t_direction direction)
+static void	get_txtr_colors(t_data *data, t_direction side)
 {
 	size_t	y;
 	size_t	i;
@@ -74,17 +74,17 @@ static void	get_txtr_colors(t_data *data, t_direction direction)
 	y = 0;
 	i = 0;
 	x = 0;
-	while (y < data->map_looks.txtr_t[direction]->height)
+	while (y < data->map_looks.txtr_t[side]->height)
 	{
-		data->map_looks.txtr_colors[direction][y] = ft_calloc_cub3d(data, \
-		data->map_looks.txtr_t[direction]->width + 1, sizeof(int));
-		while (x < data->map_looks.txtr_t[direction]->width)
+		data->map_looks.txtr_colors[side][y] = ft_calloc_cub3d(data, \
+		data->map_looks.txtr_t[side]->width + 1, sizeof(int));
+		while (x < data->map_looks.txtr_t[side]->width)
 		{
-			data->map_looks.txtr_colors[direction][y][x] = \
-			(data->map_looks.txtr_t[direction]->pixels[i] << 24 \
-			| data->map_looks.txtr_t[direction]->pixels[i + 1] << 16 \
-			| data->map_looks.txtr_t[direction]->pixels[i + 2] << 8 \
-			| data->map_looks.txtr_t[direction]->pixels[i + 3]);
+			data->map_looks.txtr_colors[side][y][x] = \
+			((uint32_t)data->map_looks.txtr_t[side]->pixels[i] << 24) \
+			| ((uint32_t)data->map_looks.txtr_t[side]->pixels[i + 1] << 16) \
+			| ((uint32_t)data->map_looks.txtr_t[side]->pixels[i + 2] << 8) \
+			| ((uint32_t)data->map_looks.txtr_t[side]->pixels[i + 3]);
 			i += 4;
 			x++;
 		}

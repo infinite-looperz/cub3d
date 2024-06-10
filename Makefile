@@ -6,17 +6,17 @@
 #    By: akasiota <akasiota@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/03/15 17:23:44 by akasiota      #+#    #+#                  #
-#    Updated: 2024/06/09 18:08:22 by akasiota      ########   odam.nl          #
+#    Updated: 2024/06/10 03:02:27 by akasiota      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME := cub3d
-CC := cc
+CC := gcc
 MLX42 := MLX42/build/libmlx42.a
 LIBFT := libft/libft.a
 
-CFLAGS := -Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS := -Wall -Wextra -Werror -g -fsanitize=address
 LIBS := $(LIBFT) $(MLX42)
 
 OS := $(shell uname)
