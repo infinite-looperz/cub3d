@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/10 15:58:47 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/05/14 18:06:07 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/10 18:04:02 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,12 @@ static void	validate_point(t_data *data, size_t y, size_t x)
 
 static bool	valid_suroundings(t_data *data, size_t y, size_t x)
 {
+	if (y == 0 || x == 0)
+		return (false);
 	if (y > 0 && (data->map_c[y - 1][x] == 'V'))
 		return (false);
-	if (y < data->map_h && (data->map_c[y + 1][x] == 'V'))
+	if (y < data->map_h && (data->map_c[y + 1][x] == 'V' \
+	|| data->map_c[y + 1][x] == '\0'))
 		return (false);
 	if (x > 0 && (data->map_c[y][x - 1] == 'V'))
 		return (false);
@@ -56,9 +59,8 @@ static void	validate_enclosure(t_data *data)
 	x = 0;
 	while (y < data->map_h)
 	{
-		while (data->map_c[y][x] == '1' || data->map_c[y][x] == 'V')
+		while (data->map_c[y][x] != '\0')
 		{
-			x++;
 			while (data->map_c[y][x] == '0' \
 			|| is_player_pos(data->map_c[y][x]) == true)
 			{
@@ -66,6 +68,7 @@ static void	validate_enclosure(t_data *data)
 					error_and_exit(data, "Map isn't enclosed by walls\n", 122);
 				x++;
 			}
+			x++;
 		}
 		x = 0;
 		y++;

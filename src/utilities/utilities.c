@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/07 17:31:48 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/09 19:36:34 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/10 18:35:39 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,23 @@
 bool	is_whitespace(char c)
 {
 	if (c == ' ' || (c >= 9 && c <= 13))
+		return (true);
+	return (false);
+}
+
+bool	empty_until_end(t_data *data, size_t i)
+{
+	if (data->map_i[i + 1] == NULL || data->map_i[i + 1][0] == '\0')
+		return (true);
+	i++;
+	while (data->map_i[i] != NULL)
+	{
+		if (data->map_i[i][0] == '\n')
+			i++;
+		else
+			return (false);
+	}
+	if (data->map_i[i] == NULL)
 		return (true);
 	return (false);
 }

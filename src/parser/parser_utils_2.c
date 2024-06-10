@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/02 16:59:34 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/10 16:11:21 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/10 18:35:29 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void	store_coordinates(t_data *data, size_t i)
 	y = 0;
 	x = 0;
 	map_dimensions(data, i);
-	data->map_c = ft_calloc_cub3d(data, data->map_h + 1, sizeof(char *));
+	data->map_c = ft_calloc_cub3d(data, data->map_h + 2, sizeof(char *));
 	while (y < data->map_h && data->map_i[i] != NULL)
 	{
-		if (data->map_i[i][x] == '\n')
+		if (data->map_i[i][x] == '\n' && empty_until_end(data, i) == false)
 			error_and_exit(data, "Map contains an empty line\n", 9);
 		data->map_c[y] = ft_calloc_cub3d(data, data->map_w + 1, sizeof(char));
 		while (x < data->map_w && data->map_i[i][x] != '\0')
@@ -63,6 +63,7 @@ void	store_coordinates(t_data *data, size_t i)
 		y++;
 		i++;
 	}
+	data->map_c[y] = ft_calloc_cub3d(data, data->map_w + 1, sizeof(char));
 }
 
 static void	get_txtr_colors(t_data *data, t_direction side)

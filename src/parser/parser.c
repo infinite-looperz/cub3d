@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/14 18:19:53 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/09 19:36:40 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/10 16:32:20 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static size_t	get_map_info_lines(t_data *data, char *filename)
 		free(line);
 		line = get_next_line(fd);
 	}
+	close(fd);
 	return (i);
 }
 

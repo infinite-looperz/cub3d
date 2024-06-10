@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/14 19:03:29 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/09 19:24:14 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/10 17:52:58 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,9 @@ static bool	parse_c_colors(t_data *data, char **tmp, size_t i)
 
 static bool	parse_coordinates(t_data *data, size_t i)
 {
-	if ((data->map_i[i][0] == ' ' || data->map_i[i][0] == '1') \
+	if ((data->map_i[i][0] == '1' || data->map_i[i][0] == '0' \
+		|| data->map_i[i][0] == 'N' || data->map_i[i][0] == 'S' \
+		|| data->map_i[i][0] == 'W' || data->map_i[i][0] == 'E') \
 	&& check_parsing_stage(data) == true)
 		store_coordinates(data, i);
 	else

@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/06 14:54:52 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/09 19:01:43 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/10 18:37:01 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	free_2d_array(void **array)
 	while (array != NULL && array[i] != NULL)
 	{
 		free_and_null(&array[i]);
-		array[i] = NULL;
 		i++;
 	}
 	if (array != NULL)

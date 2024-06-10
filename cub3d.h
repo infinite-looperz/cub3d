@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/07 17:43:02 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/10 03:25:58 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/10 18:35:58 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ void		store_map_info(t_data *data);
 void		get_txtr(t_data *data, t_direction direction, char **tmp, size_t i);
 void		store_coordinates(t_data *data, size_t i);
 bool		check_parsing_stage(t_data *data);
+bool		empty_until_end(t_data *data, size_t i);
+
 
 /* Validation */
 void		validate_args(t_data *data, int arg_count, char **args);
