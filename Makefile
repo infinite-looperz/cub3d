@@ -3,10 +3,10 @@
 #                                                         ::::::::             #
 #    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
-#    By: akasiota <akasiota@student.codam.nl>         +#+                      #
+#    By: seyildir <seyildir@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/03/15 17:23:44 by akasiota      #+#    #+#                  #
-#    Updated: 2024/06/11 15:55:31 by akasiota      ########   odam.nl          #
+#    Updated: 2024/06/11 17:01:13 by seyildir      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ PARSER_DIR := $(SRC_DIR)/parser
 RAYCAST_DIR := $(SRC_DIR)/raycaster
 UTIL_DIR := $(SRC_DIR)/utilities
 OBJ_DIR := ./obj
-# SRC = $(wildcard $(SRC_DIR)/**/*.c)
+
 SRC :=	$(SRC_DIR)/main.c \
 		$(SRC_DIR)/map_init.c \
 		$(PARSER_DIR)/parser.c \
@@ -53,7 +53,7 @@ SRC :=	$(SRC_DIR)/main.c \
 		$(UTIL_DIR)/cub3d_atoi.c \
 		$(UTIL_DIR)/errors.c \
 		$(UTIL_DIR)/utilities.c
-# OBJ := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
+
 OBJ :=	$(OBJ_DIR)/main.o \
 		$(OBJ_DIR)/map_init.o \
 		$(OBJ_DIR)/parser/parser.o \

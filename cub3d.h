@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   cub3d.h                                            :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
+/*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/07 17:43:02 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/11 16:07:04 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/11 17:03:45 by seyildir      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
