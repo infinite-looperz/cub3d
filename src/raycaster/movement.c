@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/09 16:11:53 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/09 19:24:26 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/11 16:05:18 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	rotation(t_data *data)
 {
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 	{
-		data->plyr->plyr_ang += ROT_SPD;
+		data->plyr->plyr_ang += data->plyr->rot_spd;
 		if (data->plyr->plyr_ang > 2 * M_PI)
 		{
 			data->plyr->plyr_ang -= 2 * M_PI;
@@ -39,7 +39,7 @@ static void	rotation(t_data *data)
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
 	{
-		data->plyr->plyr_ang -= ROT_SPD;
+		data->plyr->plyr_ang -= data->plyr->rot_spd;
 		if (data->plyr->plyr_ang < 0)
 		{
 			data->plyr->plyr_ang += 2 * M_PI;

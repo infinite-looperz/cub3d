@@ -3,7 +3,7 @@ NO                ./textures/kilimanjaro.png
 WE  ./textures/antelope_canyon.png
 EA  ./textures/sagano_bamboo_forest.png
 
-SO  ./textures/torres_del_paine_small.png
+SO ./textures/torres_del_paine_small.png
 
 C         180,255,255
 

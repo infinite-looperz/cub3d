@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/07 17:43:02 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/10 18:35:58 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/11 16:07:04 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # define FOV 60
 # define T_SIZE 30
 # define PLYR_SPD 4
-# define ROT_SPD 2 * M_PI / 180
 
 typedef enum e_direction
 {
@@ -71,6 +70,7 @@ typedef struct s_player
 	double	v_y;
 	double	h_x;
 	double	h_y;
+	double	rot_spd;
 }				t_player;
 
 typedef struct s_raycast_c
@@ -109,7 +109,6 @@ void		get_txtr(t_data *data, t_direction direction, char **tmp, size_t i);
 void		store_coordinates(t_data *data, size_t i);
 bool		check_parsing_stage(t_data *data);
 bool		empty_until_end(t_data *data, size_t i);
-
 
 /* Validation */
 void		validate_args(t_data *data, int arg_count, char **args);

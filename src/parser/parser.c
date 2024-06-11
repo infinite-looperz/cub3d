@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/14 18:19:53 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/10 16:32:20 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/11 16:06:28 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static void	player_position(t_data *data)
 	x = 0;
 	y = 0;
 	data->plyr = ft_calloc_cub3d(data, 1, sizeof(t_player));
+	data->plyr->rot_spd = 2 * M_PI / 180;
 	while (y < data->map_h)
 	{
 		while (x < data->map_w)
