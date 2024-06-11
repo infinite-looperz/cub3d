@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/06/09 18:02:05 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/11 16:58:50 by seyildir      ########   odam.nl         */
+/*   Created: 2024/06/09 18:02:05 by seyildir      #+#    #+#                 */
+/*   Updated: 2024/06/12 00:19:49 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static void	pixel_put(t_data *data, int x, int y, int color)
 {
-	if (x >= 0 && x < D_W && y >= 0 && y < D_H)
+	if (x >= 0 && (uint32_t)x < data->img->width && y >= 0 \
+	&& (uint32_t)y < data->img->height)
 		mlx_put_pixel(data->img, x, y, color);
 }
 
@@ -48,7 +49,7 @@ static void	put_lines_while(t_data *data, int line, int direction, double step)
 		data->ray.top++;
 		data->ray.tex_y += step;
 	}
-	while (data->ray.fc < D_H - 1)
+	while (data->ray.fc < data->img->height - 1)
 	{
 		mlx_put_pixel(data->img, line, data->ray.fc, data->map_looks.floor_c);
 		data->ray.fc++;
@@ -58,16 +59,16 @@ static void	put_lines_while(t_data *data, int line, int direction, double step)
 
 static void	put_lines_init_top_bot(t_data *data, double size)
 {
-	data->ray.top = (D_H / 2) - (size / 2);
-	data->ray.bot = (D_H / 2) + (size / 2);
+	data->ray.top = (data->img->height / 2) - (size / 2);
+	data->ray.bot = (data->img->height / 2) + (size / 2);
 	if (data->ray.top < 0)
 		data->ray.top = 0;
-	if (data->ray.bot > D_H)
-		data->ray.bot = D_H;
-	if (data->ray.top > D_H / 2)
-		data->ray.top = D_H / 2;
+	if (data->ray.bot > data->img->height)
+		data->ray.bot = data->img->height;
+	if (data->ray.top > data->img->height / 2)
+		data->ray.top = data->img->height / 2;
 	if (data->ray.bot < 0)
-		data->ray.bot = D_H / 2 + 1;
+		data->ray.bot = data->img->height / 2 + 1;
 }
 
 void	put_lines(t_data *data, int line, double dist, int direction)
@@ -76,7 +77,8 @@ void	put_lines(t_data *data, int line, double dist, int direction)
 	double	step;
 
 	dist *= cos(fix_angle(data->plyr->ray_ang - data->plyr->plyr_ang));
-	size = (T_SIZE / dist) * ((D_W / 2) / tan(data->plyr->rad_fov / 2));
+	size = (T_SIZE / dist) * ((data->img->width / 2) / \
+	tan(data->plyr->rad_fov / 2));
 	put_lines_init_top_bot(data, size);
 	step = (double)data->map_looks.txtr_t[direction]->height / size;
 	if (data->plyr->flag == 1)
@@ -87,6 +89,7 @@ void	put_lines(t_data *data, int line, double dist, int direction)
 		data->ray.tex_x = fmod((data->plyr->v_y * \
 		((float)data->map_looks.txtr_t[direction]->width / T_SIZE)), \
 		data->map_looks.txtr_t[direction]->width);
-	data->ray.tex_y = (data->ray.top - (D_H / 2) + (size / 2)) * step;
+	data->ray.tex_y = (data->ray.top - \
+	(data->img->height / 2) + (size / 2)) * step;
 	put_lines_while(data, line, direction, step);
 }

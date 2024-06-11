@@ -3,9 +3,9 @@
 /*                                                        ::::::::            */
 /*   cub3d_atoi.c                                    	:+:    :+:            */
 /*                                                     +:+                    */
-/*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
+/*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/05/07 19:55:05 by akasiota      #+#    #+#                 */
+/*   Created: 2024/05/07 19:55:05 by seyildir      #+#    #+#                 */
 /*   Updated: 2024/06/09 18:07:30 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */

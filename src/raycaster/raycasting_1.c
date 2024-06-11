@@ -6,7 +6,7 @@
 /*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/06/03 16:37:28 by seyildir      #+#    #+#                 */
-/*   Updated: 2024/06/10 18:59:45 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/12 00:07:51 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	ray_casting_while(t_data *data, double x, double y, int line)
 {
 	double	dist;
 
-	while (line < D_W)
+	while ((uint32_t)line < data->img->width)
 	{
 		x = get_inter_x(data, data->plyr->ray_ang, &data->direction_x);
 		y = get_inter_y(data, data->plyr->ray_ang, &data->direction_y);
@@ -34,7 +34,7 @@ static void	ray_casting_while(t_data *data, double x, double y, int line)
 		}
 		line++;
 		data->plyr->ray_ang = fix_angle(data->plyr->ray_ang \
-		+ data->plyr->rad_fov / D_W);
+		+ data->plyr->rad_fov / data->img->width);
 	}
 }
 
@@ -50,7 +50,7 @@ void	loop(void *par)
 
 	data = par;
 	mlx_delete_image(data->mlx, data->img);
-	data->img = mlx_new_image(data->mlx, D_W, D_H);
+	data->img = mlx_new_image(data->mlx, data->mlx->width, data->mlx->height);
 	if (data->img == NULL)
 		error_and_exit(data, "Malloc error\n", 42);
 	ray_casting(data);
