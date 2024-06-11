@@ -6,7 +6,7 @@
 #    By: akasiota <akasiota@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/03/15 17:23:44 by akasiota      #+#    #+#                  #
-#    Updated: 2024/06/10 17:36:33 by akasiota      ########   odam.nl          #
+#    Updated: 2024/06/11 15:55:31 by akasiota      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC := gcc
 MLX42 := MLX42/build/libmlx42.a
 LIBFT := libft/libft.a
 
-CFLAGS := -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS := -Wall -Wextra -Werror -g #-fsanitize=address
 LIBS := $(LIBFT) $(MLX42)
 
 OS := $(shell uname)

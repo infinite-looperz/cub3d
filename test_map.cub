@@ -1,14 +1,14 @@
 
-NO                ./textures/the_starry_night.png
-WE  ./textures/the_tower_of_babel.png
-EA  ./textures/Wheat_Field.png
+NO                ./textures/kilimanjaro.png
+WE  ./textures/antelope_canyon.png
+EA  ./textures/sagano_bamboo_forest.png
 
-SO  ./textures/SO.png
+SO  ./textures/torres_del_paine_small.png
 
 C         180,255,255
 
 
-F 220,100,0
+F 180,100,0
 
 
 
