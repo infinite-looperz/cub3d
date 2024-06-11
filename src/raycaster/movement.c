@@ -31,7 +31,7 @@ static void	rotation(t_data *data)
 {
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 	{
-		data->plyr->plyr_ang += data->plyr->rot_spd;
+		data->plyr->plyr_ang += ROT_SPD;
 		if (data->plyr->plyr_ang > 2 * M_PI)
 		{
 			data->plyr->plyr_ang -= 2 * M_PI;
@@ -39,7 +39,7 @@ static void	rotation(t_data *data)
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
 	{
-		data->plyr->plyr_ang -= data->plyr->rot_spd;
+		data->plyr->plyr_ang -= ROT_SPD;
 		if (data->plyr->plyr_ang < 0)
 		{
 			data->plyr->plyr_ang += 2 * M_PI;

@@ -27,6 +27,7 @@
 # define FOV 60
 # define T_SIZE 30
 # define PLYR_SPD 4
+# define ROT_SPD 0.06
 
 typedef enum e_direction
 {
@@ -70,7 +71,6 @@ typedef struct s_player
 	double	v_y;
 	double	h_x;
 	double	h_y;
-	double	rot_spd;
 }				t_player;
 
 typedef struct s_raycast_c

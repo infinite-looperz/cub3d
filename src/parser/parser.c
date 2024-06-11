@@ -65,7 +65,6 @@ static void	player_position(t_data *data)
 	x = 0;
 	y = 0;
 	data->plyr = ft_calloc_cub3d(data, 1, sizeof(t_player));
-	data->plyr->rot_spd = 2 * M_PI / 180;
 	while (y < data->map_h)
 	{
 		while (x < data->map_w)
