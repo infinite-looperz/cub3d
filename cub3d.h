@@ -6,7 +6,7 @@
 /*   By: seyildir <seyildir@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/07 17:43:02 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/11 17:03:45 by seyildir      ########   odam.nl         */
+/*   Updated: 2024/06/12 16:55:59 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ bool		empty_until_end(t_data *data, size_t i);
 /* Validation */
 void		validate_args(t_data *data, int arg_count, char **args);
 void		validate_map(t_data *data);
+bool		valid_suroundings(t_data *data, size_t y, size_t x);
 
 /* Raycasting */
 void		loop(void *par);

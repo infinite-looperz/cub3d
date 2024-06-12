@@ -6,7 +6,7 @@
 #    By: seyildir <seyildir@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/03/15 17:23:44 by akasiota      #+#    #+#                  #
-#    Updated: 2024/06/12 00:18:48 by akasiota      ########   odam.nl          #
+#    Updated: 2024/06/12 16:56:27 by akasiota      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC := gcc
 MLX42 := MLX42/build/libmlx42.a
 LIBFT := libft/libft.a
 
-CFLAGS := -Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS := -Wall -Wextra -Werror -g -fsanitize=address
 LIBS := $(LIBFT) $(MLX42)
 
 OS := $(shell uname)
@@ -41,6 +41,7 @@ SRC :=	$(SRC_DIR)/main.c \
 		$(PARSER_DIR)/parser_utils.c \
 		$(PARSER_DIR)/parser_utils_2.c \
 		$(PARSER_DIR)/validation.c \
+		$(PARSER_DIR)/validation_2.c \
 		$(PARSER_DIR)/validate_args.c \
 		$(RAYCAST_DIR)/raycasting_1.c \
 		$(RAYCAST_DIR)/raycasting_2.c \
@@ -60,6 +61,7 @@ OBJ :=	$(OBJ_DIR)/main.o \
 		$(OBJ_DIR)/parser/parser_utils.o \
 		$(OBJ_DIR)/parser/parser_utils_2.o \
 		$(OBJ_DIR)/parser/validation.o \
+		$(OBJ_DIR)/parser/validation_2.o \
 		$(OBJ_DIR)/parser/validate_args.o \
 		$(OBJ_DIR)/raycaster/raycasting_1.o \
 		$(OBJ_DIR)/raycaster/raycasting_2.o \
