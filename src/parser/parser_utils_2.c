@@ -6,7 +6,7 @@
 /*   By: akasiota <akasiota@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/02 16:59:34 by akasiota      #+#    #+#                 */
-/*   Updated: 2024/06/10 18:35:29 by akasiota      ########   odam.nl         */
+/*   Updated: 2024/06/13 14:52:42 by akasiota      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,10 @@ void	get_txtr(t_data *data, t_direction direction, char **tmp, size_t i)
 	data->map_looks.txtr_t[direction] = mlx_load_png(tmp[1]);
 	if (data->map_looks.txtr_t[direction] == NULL)
 		error_and_exit(data, "Error loading textures\n", 52);
+	free_and_null((void **)&tmp[0]);
+	free(tmp);
 	data->map_looks.txtr_colors[direction] = ft_calloc_cub3d(data, \
 	data->map_looks.txtr_t[direction]->height + 1, sizeof(uint32_t *));
 	get_txtr_colors(data, direction);
 	data->map_looks.direction_parsed[direction] = true;
-	free_and_null((void **)&tmp[0]);
-	free(tmp);
 }
